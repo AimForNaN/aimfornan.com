@@ -1,0 +1,10 @@
+---
+const {props} = Astro;
+---
+
+<header class="p-32 text-center">
+	<hgroup class="flex flex-col gap-2">
+		{props.heading && <h1 class="font-bold font-condensed text-6xl">{props.heading}</h1>}
+		{props.subheading && <p class="text-lg text-zinc-500">{props.subheading}</p>}
+	</hgroup>
+</header>

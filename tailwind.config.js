@@ -1,0 +1,15 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
+/** @type {import('tailwindcss').Config} */
+export default {
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+				condensed: ['"Roboto Condensed"', ...defaultTheme.fontFamily.sans],
+			},
+		},
+	},
+	plugins: [],
+}
