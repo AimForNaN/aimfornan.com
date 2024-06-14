@@ -2,13 +2,18 @@
 import Footer from '../components/footer.astro';
 import Head from '../components/head.astro';
 import Header from '../components/header.astro';
+
+const {
+	heading = 'Aim for NaN',
+	subheading = 'Be the change you want to see.',
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<Head />
 	<body class="divide-y flex flex-col min-h-screen">
-		<Header heading="Aim for NaN" subheading="Your source for winning at life." />
+		<Header heading={heading} subheading={subheading} />
 		<main class="divide-y flex flex-1 flex-col">
 			<slot />
 		</main>

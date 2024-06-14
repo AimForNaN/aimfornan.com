@@ -11,3 +11,9 @@
 		@apply text-base text-zinc-800;
 	}
 }
+
+@layer components {
+	.btn {
+		@apply bg-zinc-800 font-medium inline-flex px-6 py-3 rounded-full text-zinc-50;
+	}
+}
