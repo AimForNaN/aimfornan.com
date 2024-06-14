@@ -1,0 +1,17 @@
+---
+import Footer from '../components/footer.astro';
+import Head from '../components/head.astro';
+import Header from '../components/header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<Head />
+	<body class="divide-y flex flex-col min-h-screen">
+		<Header heading="Aim for NaN" subheading="Your source for winning at life." />
+		<main class="divide-y flex flex-1 flex-col">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

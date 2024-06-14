@@ -1,0 +1,20 @@
+---
+import SectionHeader from '../components/section-header.astro';
+
+const {props} = Astro;
+---
+
+<article class="grid gap-6 lg:gap-16 md:grid-cols-2">
+	<section class="space-y-6 lg:space-y-8">
+		<SectionHeader heading={props.heading} subheading={props.subheading} />
+		<slot />
+	</section>
+	<a class="bg-zinc-100 flex gap-2 group items-center p-8 relative rounded-xl hover:no-underline md:px-24 md:py-16" href={props.href}>
+		<div class="decoration-zinc-100 flex flex-col gap-1 transition-colors underline group-hover:decoration-zinc-800">
+			<slot name="see-more" />
+		</div>
+		<div class="absolute right-8 scale-150 md:right-24">
+			&rarr;
+		</div>
+	</a>
+</article>

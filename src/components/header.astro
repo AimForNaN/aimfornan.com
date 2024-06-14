@@ -1,10 +1,13 @@
 ---
+import PrimaryHeading from './primary-heading.astro';
+
 const {props} = Astro;
+const { class: className } = props;
 ---
 
-<header class="p-32 text-center">
+<header class="px-8 py-12 text-center lg:p-32" class:list={[className]}>
 	<hgroup class="flex flex-col gap-2">
-		{props.heading && <h1 class="font-bold font-condensed text-6xl">{props.heading}</h1>}
-		{props.subheading && <p class="text-lg text-zinc-500">{props.subheading}</p>}
+		{props.heading && <PrimaryHeading>{props.heading}</PrimaryHeading>}
+		{props.subheading && <p class="text-2xl text-zinc-500 lg:text-3xl">{props.subheading}</p>}
 	</hgroup>
 </header>
