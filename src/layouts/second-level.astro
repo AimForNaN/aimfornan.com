@@ -1,0 +1,25 @@
+---
+import Footer from '../components/footer.astro';
+import Head from '../components/head.astro';
+import Header from '../components/header.astro';
+import Nav from '../components/nav.astro';
+import PrimaryHeading from '../components/primary-heading.astro';
+
+const {
+	heading,
+	subheading,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<Head />
+	<body class="divide-y flex flex-col min-h-screen">
+		<Nav />
+		<main class="flex flex-1 flex-col gap-6 max-w-5xl mx-auto p-16 lg:gap-8 lg:px-32 lg:py-24">
+			<PrimaryHeading>{heading}</PrimaryHeading>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

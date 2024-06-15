@@ -3,6 +3,6 @@ const {props} = Astro;
 const { class: className } = props;
 ---
 
-<section class="px-8 py-12 space-y-12 w-screen lg:py-32 lg:space-y-16" class:list={[className]}>
+<section class="px-8 py-12 space-y-12 w-screen md:px-12 lg:px-16 lg:py-24 lg:space-y-16" class:list={[className]}>
 	<slot />
 </section>
