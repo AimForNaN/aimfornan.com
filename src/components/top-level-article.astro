@@ -4,7 +4,7 @@ import SectionHeader from '../components/section-header.astro';
 const {props} = Astro;
 ---
 
-<article class="max-w-5xl mx-auto" class:list={[props.href && 'gap-6 grid lg:gap-16 md:grid-cols-2', props.class]}>
+<article class="max-w-6xl mx-auto" class:list={[props.href && 'gap-6 grid lg:gap-16 md:grid-cols-2', props.class]}>
 	<section class="space-y-6 lg:space-y-8">
 		{props.heading && <SectionHeader heading={props.heading} subheading={props.subheading} />}
 		<slot />

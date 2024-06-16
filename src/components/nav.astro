@@ -1,5 +1,18 @@
+---
+import { collections } from '../content/config';
+
+const {props} = Astro;
+const entries = Object.entries(collections).filter(([, x]) => x.root).map(([collection, item]) => ({
+	name: item.name,
+	href: `/${collection}`,
+}));
+---
+
 <header class="bg-zinc-50">
-	<nav class="max-w-5xl mx-auto px-8 py-4 w-screen">
-		<a class="font-bold font-condensed text-xl" href="/">Aim for NaN</a>
+	<nav class="gap-8 flex max-w-6xl mx-auto px-4 w-screen md:p-0">
+		<a class="font-bold font-condensed py-4 text-xl md:px-8 md:py-4 xl:px-0" href="/">Aim for NaN</a>
+		{entries.map((item) => (
+			<a class="py-4" href={item.href}>{item.name}</a>
+		))}
 	</nav>
 </header>

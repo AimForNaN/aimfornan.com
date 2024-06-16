@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+import Footer from '../components/footer.astro';
+import Head from '../components/head.astro';
+import Header from '../components/header.astro';
+import Nav from '../components/nav.astro';
+
+const { params, props } = Astro;
+const {category} = params;
+const {frontmatter} = props;
+const { collections = [] } = frontmatter;
+
+const c = Object.groupBy((await Promise.all(collections.map(x => getCollection(x)))).flat(), x => x.data.category);
+---
+
+<!doctype html>
+<html lang="en">
+	<Head />
+	<body class="divide-y flex flex-col min-h-screen">
+		<Nav />
+		<main class="flex-1">
+			<Header heading={frontmatter.title} />
+			<article class="border-t divide-y flex flex-col max-w-6xl mx-auto">
+				{Object.entries(c).map(([entry_category, entries]) => (
+					<section class="flex flex-col gap-2 p-8 md:gap-0 md:grid md:grid-cols-2 md:py-8 lg:grid-cols-3 xl:px-0">
+						<header class="font-bold text-xl">
+							{entry_category}
+						</header>
+						<nav class="gap-2 grid md:gap-8 md:grid-cols-2 lg:grid-cols-3 lg:col-span-2">
+							{entries.map(entry => (
+								<a class="flex" href={`/${category}/${entry_category.toLowerCase()}/${entry.slug}`}>{entry.data.title}</a>
+							))}
+						</nav>
+					</section>
+				))}
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
