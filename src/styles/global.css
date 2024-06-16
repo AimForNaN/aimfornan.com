@@ -10,6 +10,14 @@
 	body {
 		@apply text-base text-zinc-800;
 	}
+
+	.second-level h1 {
+		@apply font-bold font-condensed text-6xl;
+	}
+
+	.second-level h2 {
+		@apply font-bold font-condensed -mb-4 mt-4 text-3xl;
+	}
 }
 
 @layer components {

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { groupEntriesBy } from '../content/config';
 
 import Footer from '../components/footer.astro';
 import Head from '../components/head.astro';
@@ -11,7 +12,7 @@ const {category} = params;
 const {frontmatter} = props;
 const { collections = [] } = frontmatter;
 
-const c = Object.groupBy((await Promise.all(collections.map(x => getCollection(x)))).flat(), x => x.data.category);
+const c = await groupEntriesBy(collections, x => x.data.category);
 ---
 
 <!doctype html>

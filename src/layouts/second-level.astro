@@ -6,8 +6,7 @@ import Nav from '../components/nav.astro';
 import PrimaryHeading from '../components/primary-heading.astro';
 
 const {
-	heading,
-	subheading,
+	frontmatter,
 } = Astro.props;
 ---
 
@@ -16,8 +15,8 @@ const {
 	<Head />
 	<body class="divide-y flex flex-col min-h-screen">
 		<Nav />
-		<main class="flex flex-1 flex-col gap-6 max-w-6xl mx-auto p-16 lg:gap-8 lg:px-32 lg:py-24">
-			<PrimaryHeading>{heading}</PrimaryHeading>
+		<main class="second-level flex flex-1 flex-col gap-6 max-w-6xl mx-auto p-16 lg:gap-8 lg:px-32 lg:py-24">
+			<PrimaryHeading>{frontmatter.title}</PrimaryHeading>
 			<slot />
 		</main>
 		<Footer />
