@@ -6,6 +6,10 @@
 	a {
 		@apply hover:underline;
 	}
+	
+	blockquote {
+		@apply bg-zinc-50 px-4 py-2 rounded-lg text-center text-lg md:px-8 md:py-4;
+	}
 
 	body {
 		@apply text-base text-zinc-800;
@@ -16,7 +20,7 @@
 	}
 
 	.second-level h2 {
-		@apply font-bold font-condensed -mb-4 mt-4 text-3xl;
+		@apply font-bold font-condensed !-mb-4 !mt-16 text-3xl;
 	}
 }
 

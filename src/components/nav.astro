@@ -12,7 +12,7 @@ const entries = Object.entries(collections).filter(([, x]) => x.root).map(([coll
 	<nav class="gap-4 flex max-w-6xl mx-auto px-8 w-screen md:gap-8 md:p-0">
 		<a class="font-bold font-condensed py-4 text-xl md:px-8 md:py-4 xl:px-0" href="/">Aim for NaN</a>
 		{entries.map((item) => (
-			<a class="py-4" href={item.href}>{item.name}</a>
+			<a class="hidden py-4 md:inline" href={item.href}>{item.name}</a>
 		))}
 	</nav>
 </header>

@@ -4,16 +4,16 @@ import SectionHeader from '../components/section-header.astro';
 const {props} = Astro;
 ---
 
-<article class="max-w-6xl mx-auto" class:list={[props.href && 'gap-6 grid lg:gap-16 md:grid-cols-2', props.class]}>
-	<section class="space-y-6 lg:space-y-8">
+<article class="gap-8 max-w-6xl mx-auto" class:list={[props.href && 'grid md:grid-cols-2', props.class]}>
+	<section class="space-y-4">
 		{props.heading && <SectionHeader heading={props.heading} subheading={props.subheading} />}
 		<slot />
 	</section>
-	{props.href && <a class="bg-zinc-100 flex gap-2 items-center p-8 relative rounded-xl md:px-24 md:py-16" href={props.href}>
-		<div class="decoration-zinc-100 flex flex-col gap-1 mr-8">
+	{props.href && <a class="bg-zinc-100 flex gap-4 items-center p-8 relative rounded-lg md:gap-8 md:p-16 lg:px-24 lg:py-16" href={props.href}>
+		<div class="decoration-zinc-100 flex flex-col gap-2 mr-12 md:mr-16 lg:mr-24">
 			<slot name="see-more" />
 		</div>
-		<div class="absolute right-10 scale-150 text-2xl md:right-24">
+		<div class="absolute right-12 scale-150 text-2xl md:right-16 lg:right-24">
 			&rarr;
 		</div>
 	</a>}
