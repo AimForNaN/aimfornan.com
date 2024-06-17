@@ -1,4 +1,4 @@
-import { defineCollection, getCollection, getEntry, z } from 'astro:content';
+import { defineCollection, getCollection, getEntry, getEntries, z } from 'astro:content';
 import mapAsync from '../lib/map-async';
 
 const compendium_collection = defineCollection({
@@ -41,7 +41,7 @@ export const collections = {
 	'nutrition-vegetables': foods_collection,
 };
 
-export async function getEntriesFromCollections(entry_collections = []) {
+export async function getSortedEntriesFromCollections(entry_collections = []) {
 	return await mapAsync(async (collection) => {
 		const c = collections[collection];
 		collection = await getCollection(collection);
@@ -51,21 +51,20 @@ export async function getEntriesFromCollections(entry_collections = []) {
 	}, entry_collections);
 }
 
-export async function getRootCollections() {
-	return await Promise.all(Object.entries(collections).filter(([, item]) => item.root).map(async ([collection]) => {
-		[collection] = await getCollection(collection);
-		return collection;
-	}));
+export async function getNonRootEntries() {
+	return (await Promise.all(Object.entries(collections).filter(([, item]) => !item.root).map(async ([collection]) => {
+		return await getCollection(collection);
+	}))).flat();
 }
 
 export async function getRootEntries() {
-	return await Promise.all(Object.values(collections).filter((item) => item.root).map(async (collection) => {
+	return await Promise.all(Object.entries(collections).filter(([, item]) => item.root).map(async ([collection]) => {
 		return await getEntry(collection, 'index');
 	}));
 }
 
 export async function groupEntriesBy(entry_collections = [], group_by) {
-	const entries = await getEntriesFromCollections(entry_collections);
+	const entries = await getSortedEntriesFromCollections(entry_collections);
 	return Object.groupBy(entries.flat(), group_by);
 }
 

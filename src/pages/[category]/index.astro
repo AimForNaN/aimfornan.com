@@ -1,9 +1,9 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import { getRootCollections } from '../../content/config';
+import { getRootEntries } from '../../content/config';
 
 export async function getStaticPaths() {
-	const collections = await getRootCollections();
+	const collections = await getRootEntries();
 	return collections.map(collection => ({
 		params: {
 			category: collection.collection,
