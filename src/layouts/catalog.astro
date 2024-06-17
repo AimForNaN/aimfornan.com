@@ -25,7 +25,7 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 			<article class="border-t divide-y flex flex-col max-w-6xl mx-auto">
 				{Object.entries(c).map(([entry_category, entries]) => (
 					<section class="flex flex-col gap-2 p-8 md:gap-0 md:grid md:grid-cols-2 md:py-8 lg:grid-cols-3 xl:px-0">
-						<header class="font-bold text-xl">
+						<header class="font-bold text-lg tracking-widest uppercase">
 							{entry_category}
 						</header>
 						<nav class="gap-2 grid md:gap-8 md:grid-cols-2 lg:grid-cols-3 lg:col-span-2">

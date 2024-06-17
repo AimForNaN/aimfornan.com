@@ -34,8 +34,9 @@ export const collections = {
 			title: z.string(),
 		}),
 	}),
+	health: rootCollection('Health'),
+	'health-compendium': compendium_collection,
 	nutrition: rootCollection('Nutrition'),
-	'nutrition-compendium': compendium_collection,
 	'nutrition-fruits': foods_collection,
 	'nutrition-vegetables': foods_collection,
 };
