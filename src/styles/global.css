@@ -22,6 +22,18 @@
 	.second-level h2 {
 		@apply font-bold font-condensed !-mb-4 !mt-16 text-3xl;
 	}
+
+	.second-level hr {
+		@apply !-mb-4;
+	}
+
+	.second-level hr.footnotes-bar {
+		@apply !mt-16;
+	}
+
+	.second-level .sr-only {
+		@apply hidden;
+	}
 }
 
 @layer components {
