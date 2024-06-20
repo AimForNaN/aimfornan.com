@@ -15,9 +15,11 @@ const {
 	<Head />
 	<body class="divide-y flex flex-col min-h-screen">
 		<Nav />
-		<main class="second-level flex-1 max-w-6xl mx-auto p-8 py-16 space-y-8 md:px-16 lg:px-32 lg:py-24">
-			<PrimaryHeading>{frontmatter.title}</PrimaryHeading>
-			<slot />
+		<main class="second-level flex-1">
+			<article class="max-w-6xl mx-auto p-8 py-16 space-y-8 md:px-16 lg:px-32 lg:py-24">
+				<PrimaryHeading>{frontmatter.title}</PrimaryHeading>
+				<slot />
+			</article>
 		</main>
 		<Footer />
 	</body>
