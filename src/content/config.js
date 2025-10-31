@@ -6,7 +6,7 @@ const compendium_collection = defineCollection({
 	type: 'content',
 	schema: z.object({
 		category: z.string(),
-		index: z.coerce.number().nonnegative().int(),
+		index: z.coerce.number().nonnegative().int().optional(),
 		title: z.string(),
 	}),
 });
@@ -46,7 +46,7 @@ export async function getSortedEntriesFromCollections(entry_collections = []) {
 		const c = collections[collection];
 		collection = await getCollection(collection);
 		return collection.toSorted((a,b) => {
-			return a.data[c.sort_by] - b.data[c.sort_by];
+			return (a.data[c.sort_by] ?? 2) - (b.data[c.sort_by] ?? 2);
 		});
 	}, entry_collections);
 }

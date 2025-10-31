@@ -1,38 +1,71 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+	--default-font-family: "Roboto";
+	--font-condensed: "Roboto Condensed", sans-serif;
+}
 
 @layer base {
 	a {
 		@apply hover:underline;
 	}
-	
+
 	blockquote {
-		@apply bg-zinc-50 px-4 py-2 rounded-lg text-center text-lg md:px-8 md:py-4;
+		@apply bg-zinc-50 px-4 py-2 rounded-lg text-lg md:px-8 md:py-4 md:text-center dark:bg-zinc-700;
 	}
 
 	body {
-		@apply text-base text-zinc-800;
+		@apply text-base text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100;
 	}
 
-	.second-level h1 {
-		@apply font-bold font-condensed text-6xl;
+	input:not([type="checkbox"]):not([type="radio"]), select, textarea, ::picker(select) {
+		@apply appearance-none bg-white border border-zinc-300 duration-200 min-h-8 outline-none px-3 py-1 ring-zinc-500 rounded-md shadow-sm transition w-full focus:ring-2 dark:bg-zinc-800 dark:border-zinc-600;
 	}
 
-	.second-level h2 {
-		@apply font-bold font-condensed !-mb-4 !mt-16 text-3xl;
+	input[type="checkbox"], input[type="radio"] {
+		@apply mr-1;
 	}
 
-	.second-level .footnotes ol {
-		@apply border-t flex flex-col gap-1 list-decimal mt-16 p-4;
+	input[type="checkbox"], input[type="radio"], select {
+		@apply cursor-pointer;
 	}
 
-	.second-level .footnotes ol li {
-		@apply pl-2;
+	label:has(input,select,textarea) {
+		@apply cursor-pointer;
 	}
 
-	.second-level .sr-only {
-		@apply hidden;
+	select {
+		&[multiple] {
+			@apply min-h-44 p-1;
+		}
+
+		&:open {
+			@apply opacity-50 ring-2;
+		}
+
+		option {
+			@apply appearance-none cursor-pointer m-1 outline-none px-3 py-2 rounded-md whitespace-break-spaces hover:bg-zinc-100 dark:hover:bg-zinc-700 dark:text-zinc-300;
+
+			&:checked {
+				@apply bg-zinc-700 font-bold text-zinc-50 dark:bg-zinc-600;
+			}
+
+			&::checkmark {
+				@apply hidden;
+			}
+		}
+	}
+
+	select, ::picker(select) {
+		appearance: base-select;
+	}
+
+	::picker(select) {
+		@apply my-2 p-1 ring ring-zinc-500 shadow-xl w-auto;
+	}
+
+	textarea {
+		@apply min-h-36 py-2;
 	}
 }
 

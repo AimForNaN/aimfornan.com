@@ -1,8 +1,7 @@
 ---
-import '../styles/global.css';
-
 const {
-	title,
+	description = "",
+	title = "",
 } = Astro.props;
 ---
 
@@ -11,5 +10,6 @@ const {
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-	<title>Aim for NaN</title>
+	<title>{title} | Aim for NaN</title>
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>

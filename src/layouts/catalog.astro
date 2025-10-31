@@ -7,6 +7,8 @@ import Head from '../components/head.astro';
 import Header from '../components/header.astro';
 import Nav from '../components/nav.astro';
 
+import '../styles/global.css';
+
 const { params, props } = Astro;
 const { category } = params;
 const { frontmatter } = props;
@@ -17,12 +19,12 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 
 <!doctype html>
 <html lang="en">
-	<Head />
-	<body class="divide-y flex flex-col min-h-screen">
+	<Head title={frontmatter.title} />
+	<body class="divide-zinc-200 divide-y flex flex-col min-h-screen dark:divide-zinc-700">
 		<Nav />
 		<main class="flex-1">
 			<Header heading={frontmatter.title} />
-			<article class="border-t divide-y flex flex-col max-w-6xl mx-auto">
+			<article class="border-zinc-500 border-t-2 divide-zinc-300 divide-y flex flex-col max-w-6xl mx-auto dark:border-zinc-600 dark:divide-zinc-700">
 				{Object.entries(c).map(([entry_category, entries]) => (
 					<section class="flex flex-col gap-2 p-8 md:gap-0 md:grid md:grid-cols-2 md:py-8 lg:grid-cols-3 xl:px-0">
 						<header class="font-bold text-lg tracking-widest uppercase">

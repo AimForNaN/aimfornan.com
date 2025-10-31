@@ -5,19 +5,29 @@ import Header from '../components/header.astro';
 import Nav from '../components/nav.astro';
 import PrimaryHeading from '../components/primary-heading.astro';
 
+import '../styles/second-level.css';
+
+if ('frontmatter' in Astro.props) {
+	var {
+		frontmatter,
+	} = Astro.props;
+} else {
+	var frontmatter = Astro.props;
+}
+
 const {
-	frontmatter,
-} = Astro.props;
+	title,
+} = frontmatter;
 ---
 
 <!doctype html>
 <html lang="en">
-	<Head />
-	<body class="divide-y flex flex-col min-h-screen">
+	<Head title={title} />
+	<body class="divide-zinc-200 divide-y flex flex-col min-h-screen dark:divide-zinc-600">
 		<Nav />
 		<main class="second-level flex-1">
 			<article class="max-w-6xl mx-auto p-8 py-16 space-y-8 md:px-16 lg:px-32 lg:py-24">
-				<PrimaryHeading>{frontmatter.title}</PrimaryHeading>
+				<PrimaryHeading>{title}</PrimaryHeading>
 				<slot />
 			</article>
 		</main>

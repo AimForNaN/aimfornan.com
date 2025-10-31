@@ -8,11 +8,11 @@ const entries = Object.entries(collections).filter(([, x]) => x.root).map(([coll
 }));
 ---
 
-<header class="bg-zinc-50">
-	<nav class="gap-4 flex max-w-6xl mx-auto px-8 w-screen md:gap-8 md:p-0">
-		<a class="font-bold font-condensed py-4 text-xl md:px-8 md:py-4 xl:px-0" href="/">Aim for NaN</a>
+<header class="bg-zinc-50 border-b sticky top-0 dark:bg-zinc-900 dark:border-zinc-600">
+	<nav class="flex max-w-6xl mx-auto px-8 w-screen md:p-0">
+		<a class="font-bold font-condensed py-4 text-xl md:p-4" href="/">Aim for NaN</a>
 		{entries.map((item) => (
-			<a class="hidden py-4 md:inline" href={item.href}>{item.name}</a>
+			<a class="hidden items-center px-4 md:inline-flex" href={item.href}>{item.name}</a>
 		))}
 	</nav>
 </header>
