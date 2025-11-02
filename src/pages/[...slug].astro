@@ -1,5 +1,5 @@
 ---
-import { getEntryBySlug } from 'astro:content';
+import { getEntry, render} from 'astro:content';
 import { getNonRootEntries } from '../content/config';
 
 export async function getStaticPaths() {
@@ -20,8 +20,8 @@ export async function getStaticPaths() {
 const { params, props } = Astro;
 const { slug } = params;
 const { collection } = props;
-const entry = await getEntryBySlug(collection, slug);
-const { Content } = await entry.render();
+const entry = await getEntry(collection, slug);
+const { Content } = await render(entry);
 ---
 
 <Content />

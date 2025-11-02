@@ -42,10 +42,10 @@ export const collections = {
 };
 
 export async function getSortedEntriesFromCollections(entry_collections = []) {
-	return await mapAsync(async (collection) => {
+	return mapAsync(async (collection) => {
 		const c = collections[collection];
 		collection = await getCollection(collection);
-		return collection.toSorted((a,b) => {
+		return collection.toSorted((a, b) => {
 			return (a.data[c.sort_by] ?? 2) - (b.data[c.sort_by] ?? 2);
 		});
 	}, entry_collections);
