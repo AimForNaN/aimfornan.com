@@ -11,7 +11,11 @@
         }
 
         h2 {
-            @apply font-bold font-condensed !mb-4 !mt-12 text-3xl text-zinc-600 dark:text-zinc-400;
+            @apply font-bold font-condensed mb-4! mt-12! text-3xl text-zinc-600 dark:text-zinc-400;
+        }
+
+        h3 {
+            @apply font-bold font-condensed leading-none my-8! text-xl text-zinc-600 dark:text-zinc-400;
         }
 
         input:not([type="checkbox"]):not([type="radio"]), select, textarea, ::picker(select) {
