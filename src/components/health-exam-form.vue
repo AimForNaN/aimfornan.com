@@ -1,5 +1,5 @@
 <script setup>
-	import { h } from 'vue';
+	import { h, shallowRef, ref } from 'vue';
 
 	function FieldGroup(props, { slots }) {
 		return h('label', { class: 'border border-zinc-300 flex flex-col gap-1 p-4 rounded-md dark:border-zinc-700' },
@@ -7,7 +7,7 @@
 		);
 	}
 	function FieldSection(props, { slots }) {
-		return h('div', { class: 'flex flex-col gap-8 md:grid md:grid-cols-2 lg:grid-cols-3' },
+		return h('div', { class: 'flex flex-col gap-4 md:gap-8 md:grid md:grid-cols-2 lg:grid-cols-3' },
 			slots.default(),
 		);
 	}
@@ -20,262 +20,619 @@
 	function YesNoGroup({ name }) {
 		return h('p', { class: 'flex gap-4' }, [
 			h('label', [
-				h('input', { name, type: 'radio', value: true }),
-				' Yes',
-			]),
-			h('span', '/'),
-			h('label', [
 				h('input', { name, type: 'radio', value: false }),
 				' No',
 			]),
+			h('span', '/'),
+			h('label', [
+				h('input', { name, type: 'radio', value: true }),
+				' Yes',
+			]),
 		]);
 	}
+	function isChecked({ value: field }, option) {
+		if (Array.isArray(field.value)) {
+			return field.value.includes(option.value);
+		}
+
+		return field.value === option.value;
+	}
+
+	const exam = [
+		{
+			label: 'Physical',
+			fields: [
+				{
+					attrs: {
+						min: 1,
+						name: 'age',
+						placeholder: 'yrs',
+						type: 'number',
+					},
+					label: 'Age (in years).',
+					type: 'input',
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						min: 1,
+						name: 'weight',
+						placeholder: 'kgs',
+						type: 'number',
+					},
+					label: 'Weight (in kilograms).',
+					type: 'input',
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						min: 1,
+						name: 'height',
+						placeholder: 'cm',
+						type: 'number',
+					},
+					label: 'Height (in centimeters).',
+					type: 'input',
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'sex',
+					},
+					label: 'Sex.',
+					options: [
+						{
+							value: 'Male',
+						},
+						{
+							value: 'Female',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Male'),
+				},
+			],
+		},
+		{
+			label: 'Medical history',
+			fields: [
+				{
+					attrs: {
+						name: 'balding',
+					},
+					label: 'Bald or balding?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'receding-gums',
+					},
+					label: 'Have receding gums?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'depression',
+					},
+					label: 'Suffer from depression?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'falling-asleep',
+					},
+					label: 'Issues falling asleep?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'staying-asleep',
+					},
+					label: 'Issues staying asleep?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'low-libido',
+					},
+					label: 'Have a low libido?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'diabetic',
+					},
+					label: 'Diabetic?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'edema',
+					},
+					label: 'Edema?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'food-allergy',
+					},
+					label: 'Allergic to any food?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'laxative',
+					},
+					label: 'Take a laxative?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'abx',
+					},
+					label: 'Take antibiotics?',
+					options: [
+						{
+							value: 'Never',
+						},
+						{
+							value: 'When I feel under the weather',
+						},
+						{
+							value: 'I\'m on a prescription',
+						},
+						{
+							value: 'Had some only recently',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Never'),
+				},
+				{
+					attrs: {
+						name: 'vaxxed',
+					},
+					label: 'Ever been vaccinated?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						min: 0,
+						name: 'covid-shots',
+						type: 'number',
+						value: 0,
+					},
+					label: 'How many COVID vaccine shots?',
+					type: 'input',
+					value: shallowRef(0),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'gut-disease',
+					},
+					label: 'Gut disease history.',
+					options: [
+						{
+							value: 'None',
+						},
+						{
+							value: 'Auto-brewery syndrome',
+						},
+						{
+							value: 'Chronic fatigue syndrome',
+						},
+						{
+							value: 'Colitis',
+						},
+						{
+							value: 'Constipation',
+						},
+						{
+							value: 'Crohn\'s disease',
+						},
+						{
+							value: 'Diverticulitis',
+						},
+						{
+							value: 'Gastritis',
+						},
+						{
+							value: 'Irritable bowel disease',
+						},
+						{
+							value: 'Lactose intolerance',
+						},
+						{
+							value: 'Short bowel syndrome',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: ref(['None']),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'infections',
+					},
+					label: 'Infectious disease history.',
+					options: [
+						{
+							value: 'None',
+						},
+						{
+							value: 'AIDS',
+						},
+						{
+							value: 'Epstein-Barr',
+						},
+						{
+							value: 'HIV',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: ref(['None']),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'liver-disease',
+					},
+					label: 'Liver disease history.',
+					options: [
+						{
+							value: 'None',
+						},
+						{
+							value: 'Alcoholic fatty liver',
+						},
+						{
+							value: 'Cancer',
+						},
+						{
+							value: 'Cirrhosis',
+						},
+						{
+							value: 'Hepatitis',
+						},
+						{
+							value: 'Non-alcoholic fatty liver',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: ref(['None']),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'neurological-disease',
+					},
+					label: 'Neurological disease history.',
+					options: [
+						{
+							value: 'None',
+						},
+						{
+							value: 'Autism',
+						},
+						{
+							value: 'Multiple Sclerosis',
+						},
+						{
+							value: 'Parkinson\'s disease',
+						},
+						{
+							value: 'Schizophrenia',
+						},
+						{
+							value: 'Seizures',
+						},
+						{
+							value: 'Stroke',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: ref(['None']),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'skin-disease',
+					},
+					label: 'Skin disease history.',
+					options: [
+						{
+							value: 'None',
+						},
+						{
+							value: 'Acne',
+						},
+						{
+							value: 'Dermatitis',
+						},
+						{
+							value: 'Eczema',
+						},
+						{
+							value: 'Hives',
+						},
+						{
+							value: 'Psoriasis',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: ref(['None']),
+				},
+				{
+					attrs: {
+						name: 'disease-other',
+					},
+					group: {
+						attrs: {
+							class: 'md:col-span-2 lg:col-span-3',
+						},
+					},
+					label: 'Write in detail anything we missed.',
+					type: 'textarea',
+					value: shallowRef(''),
+				},
+			],
+		},
+		{
+			label: 'Lifestyle and diet',
+			fields: [
+				{
+					attrs: {
+						name: 'alcohol',
+					},
+					label: 'Drink alcoholic beverages frequently?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'oral-sex',
+					},
+					label: 'Ever given oral sex?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'anal-sex',
+					},
+					label: 'Ever received anal sex?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'active-level',
+					},
+					label: 'How active are you?',
+					options: [
+						{
+							value: 'Mostly bed-bound',
+						},
+						{
+							value: 'Couch potato',
+						},
+						{
+							value: 'Mostly sitting behind a computer or phone',
+						},
+						{
+							value: 'I dedicate a few hours towards walking(weekly)',
+						},
+						{
+							value: 'I dedicate a few hours towards walking (daily)',
+						},
+						{
+							value: 'I dedicate a few hours towards jogging (weekly)',
+						},
+						{
+							value: 'I dedicate a few hours towards jogging (daily)',
+						},
+						{
+							value: 'I play a sport (weekly)',
+						},
+						{
+							value: 'I play a sport (daily)',
+						},
+						{
+							value: 'I go to the gym (weekly)',
+						},
+						{
+							value: 'I go to the gym (daily)',
+						},
+						{
+							value: 'I\'m a practicing athlete',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Mostly bed-bound'),
+				},
+				{
+					attrs: {
+						name: 'diet',
+					},
+					label: 'Are you on any exclusive diet?',
+					options: [
+						{
+							value: 'I eat whatever I want',
+						},
+						{
+							value: 'Vegan',
+						},
+						{
+							value: 'Vegetarian',
+						},
+						{
+							value: 'Pescetarian',
+						},
+						{
+							value: 'Mediterranean',
+						},
+						{
+							value: 'Carnivore',
+						},
+						{
+							value: 'Keto',
+						},
+						{
+							value: 'Paleo',
+						},
+						{
+							value: 'Low FODMAP',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
+					value: shallowRef('I eat whatever I want'),
+				},
+				{
+					attrs: {
+						min: 0,
+						name: 'water',
+						placeholder: 'oz',
+						type: 'number',
+					},
+					label: 'Water per day (in ounces).',
+					type: 'input',
+					value: shallowRef(0),
+				},
+				{
+					attrs: {
+						name: 'diet-last',
+					},
+					group: {
+						attrs: {
+							class: 'md:col-span-2 lg:col-span-3',
+						},
+					},
+					label: 'Describe in detail what you ate the last 3-5 days.',
+					type: 'textarea',
+					value: shallowRef(''),
+				},
+			],
+		},
+		{
+			label: 'Stool',
+			fields: [
+				{
+					attrs: {
+						name: 'smelly-poop',
+					},
+					label: 'Smelly poop?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'poop-frequency',
+					},
+					label: 'How frequent do you poop?',
+					options: [
+						{
+							value: 'Once a day',
+						},
+						{
+							value: 'More than once a day',
+						},
+						{
+							value: 'Once every other day',
+						},
+						{
+							value: 'Twice a week',
+						},
+						{
+							value: 'Once a week',
+						},
+						{
+							value: 'Once every other week',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Once a day'),
+				},
+				{
+					attrs: {
+						class: 'stool-types',
+						name: 'poop-type',
+					},
+					label: 'How does your poop look like?',
+					options: [
+						{
+							value: 'Type 1',
+						},
+						{
+							value: 'Type 2',
+						},
+						{
+							value: 'Type 3',
+						},
+						{
+							value: 'Type 4',
+						},
+						{
+							value: 'Type 5',
+						},
+						{
+							value: 'Type 6',
+						},
+						{
+							value: 'Type 7',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Type 1'),
+				},
+			],
+		},
+	];
 </script>
 
 <template>
 	<form>
-		<h2>Physical</h2>
-		<FieldSection>
-			<FieldGroup>
-				<p>Age (in years).</p>
-				<input min="1" placeholder="yrs" type="number" />
-			</FieldGroup>
-			<FieldGroup>
-				<p>Weight (in kilograms).</p>
-				<input min="1" placeholder="kg" type="number" />
-			</FieldGroup>
-			<FieldGroup>
-				<p>Height (in centimeters).</p>
-				<input min="1" placeholder="cm" type="number" />
-			</FieldGroup>
-			<FieldGroup>
-				<p>Sex.</p>
-				<select>
-					<option>Male</option>
-					<option>Female</option>
-				</select>
-			</FieldGroup>
-		</FieldSection>
-
-		<h2>Medical history</h2>
-		<FieldSection>
-			<FieldGroup>
-				<p>Bald or balding?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Have receding gums?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Suffer from depression?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Issues falling asleep?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Issues staying asleep?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Have a low libido?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Diabetic?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Edema?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Take antibiotics?</p>
-				<select>
-					<option>Never</option>
-					<option>Whenever I feel a cold or flu coming</option>
-					<option>I'm on a prescription</option>
-					<option>Had some only recently</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Ever been vaccinated?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>How many COVID vaccine shots?</p>
-				<input type="number" value="0" />
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Allergic to any food?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Take a laxative?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Gut disease history.</p>
-				<select multiple>
-					<option selected>None</option>
-					<option>Auto-brewery syndrome</option>
-					<option>Colitis</option>
-					<option>Constipation</option>
-					<option>Crohn's disease</option>
-					<option>Chronic fatigue syndrome</option>
-					<option>Diverticulitis</option>
-					<option>Irritable bowel disease</option>
-					<option>Lactose intolerance</option>
-					<option>Short bowel syndrome</option>
-					<option>Other</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Liver disease history.</p>
-				<select multiple>
-					<option selected>None</option>
-					<option>Alcoholic fatty liver</option>
-					<option>Cancer</option>
-					<option>Cirrhosis</option>
-					<option>Hepatitis</option>
-					<option>Non-alcoholic fatty liver</option>
-					<option>Other</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Neurological disease history.</p>
-				<select multiple>
-					<option selected>None</option>
-					<option>Autism</option>
-					<option>Multiple Sclerosis</option>
-					<option>Parkinson's disease</option>
-					<option>Schizophrenia</option>
-					<option>Seizures</option>
-					<option>Stroke</option>
-					<option>Other</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Skin disease history.</p>
-				<select multiple>
-					<option selected>None</option>
-					<option>Acne</option>
-					<option>Dermatitis</option>
-					<option>Eczema</option>
-					<option>Hives</option>
-					<option>Psoriasis</option>
-					<option>Other</option>
-				</select>
-			</FieldGroup>
-		</FieldSection>
-
-		<h2>Lifestyle and diet</h2>
-		<FieldSection>
-			<FieldGroup>
-				<p>How active are you?</p>
-				<select>
-					<option>Mostly bed-bound</option>
-					<option>Couch potato</option>
-					<option>Mostly sitting behind a computer or phone</option>
-					<option>I dedicate a few hours towards walking (weekly)</option>
-					<option>I dedicate a few hours towards walking (daily)</option>
-					<option>I dedicate a few hours towards jogging (weekly)</option>
-					<option>I dedicate a few hours towards jogging (daily)</option>
-					<option>I play a sport (weekly)</option>
-					<option>I play a sport (daily)</option>
-					<option>I go to the gym (weekly)</option>
-					<option>I go to the gym (daily)</option>
-					<option>I'm a practicing athlete</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Are you on any exclusive diet?</p>
-				<select>
-					<option>I eat whatever I want</option>
-					<option>Vegan</option>
-					<option>Vegetarian</option>
-					<option>Pescetarian</option>
-					<option>Mediterranean</option>
-					<option>Carnivore</option>
-					<option>Keto</option>
-					<option>Paleo</option>
-					<option>Low FODMAP</option>
-					<option>Other</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Water per day (in ounces).</p>
-				<input type="number" min="0" value="0" />
-			</FieldGroup>
-
-			<FieldGroup class="md:col-span-2 lg:col-span-3">
-				<p>Describe in detail what you ate the last 3-5 days.</p>
-				<textarea></textarea>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Drink alcoholic beverages frequently?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Ever received anal sex?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>Ever given oral sex?</p>
-				<YesNoGroup/>
-			</FieldGroup>
-		</FieldSection>
-
-		<h2>Stool</h2>
-		<FieldSection>
-			<FieldGroup>
-				<p>How frequent do you poop?</p>
-				<select>
-					<option>Once a day</option>
-					<option>More than once a day</option>
-					<option>Once every other day</option>
-					<option>Twice a week</option>
-					<option>Once a week</option>
-					<option>Once every other week</option>
-				</select>
-			</FieldGroup>
-
-			<FieldGroup>
-				<p>How does your poop look like?</p>
-				<select class="stool-types">
-					<option>Type 1</option>
-					<option>Type 2</option>
-					<option>Type 3</option>
-					<option>Type 4</option>
-					<option>Type 5</option>
-					<option>Type 6</option>
-					<option>Type 7</option>
-				</select>
-			</FieldGroup>
-		</FieldSection>
+		<template :key="section.label" v-for="section in exam">
+			<h2>{{ section.label }}</h2>
+			<FieldSection>
+				<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
+					<p>{{ field.label }}</p>
+					<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-if="field.options">
+						<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
+					</component>
+					<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></component>
+				</FieldGroup>
+			</FieldSection>
+		</template>
 	</form>
 </template>
 

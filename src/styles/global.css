@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import '@fontsource-variable/roboto';
+@import '@fontsource-variable/roboto-condensed';
 
 @theme {
 	--default-font-family: "Roboto";
@@ -11,15 +13,20 @@
 	}
 
 	blockquote {
-		@apply bg-zinc-50 px-4 py-2 rounded-lg text-lg md:px-8 md:py-4 md:text-center dark:bg-zinc-700;
+		@apply bg-zinc-50 px-4 py-2 rounded-lg text-lg
+			md:px-8 md:py-4 md:text-center
+			dark:bg-zinc-700;
 	}
 
 	body {
-		@apply text-base text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100;
+		@apply text-base text-zinc-800
+			dark:bg-zinc-800 dark:text-zinc-100;
 	}
 
 	input:not([type="checkbox"]):not([type="radio"]), select, textarea, ::picker(select) {
-		@apply appearance-none bg-white border border-zinc-300 duration-200 min-h-8 outline-none px-3 py-1 ring-zinc-500 rounded-md shadow-sm transition w-full focus:ring-2 dark:bg-zinc-800 dark:border-zinc-600;
+		@apply appearance-none bg-zinc-50 border border-zinc-300 duration-200 min-h-8 outline-none px-3 py-1 ring-zinc-500 rounded-md shadow-sm shadow-zinc-200 transition w-full
+			focus:ring-2
+			dark:bg-zinc-700 dark:border-zinc-600 dark:shadow-zinc-900;
 	}
 
 	input[type="checkbox"], input[type="radio"] {
@@ -36,7 +43,7 @@
 
 	select {
 		&[multiple] {
-			@apply min-h-44 p-1;
+			@apply h-48 p-1;
 		}
 
 		&:open {
@@ -44,10 +51,13 @@
 		}
 
 		option {
-			@apply appearance-none cursor-pointer m-1 outline-none px-3 py-2 rounded-md whitespace-break-spaces hover:bg-zinc-100 dark:hover:bg-zinc-700 dark:text-zinc-300;
+			@apply appearance-none cursor-pointer m-1 outline-none px-3 py-2 rounded-md whitespace-break-spaces
+				hover:bg-zinc-200
+				dark:hover:bg-zinc-600 dark:text-zinc-300;
 
 			&:checked {
-				@apply bg-zinc-700 font-bold text-zinc-50 dark:bg-zinc-600;
+				@apply bg-zinc-700 font-bold text-zinc-50
+				dark:bg-zinc-500;
 			}
 
 			&::checkmark {
