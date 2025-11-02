@@ -9,7 +9,7 @@
 
 @layer base {
 	a {
-		@apply transition-colors;
+		@apply transition-colors underline;
 	}
 
 	blockquote {
@@ -43,7 +43,7 @@
 
 	select {
 		&[multiple] {
-			@apply h-48 p-1;
+			@apply h-56 p-1;
 		}
 
 		&:open {
@@ -75,7 +75,7 @@
 	}
 
 	textarea {
-		@apply min-h-36 py-2;
+		@apply min-h-44 py-2;
 	}
 }
 
@@ -88,7 +88,7 @@
 		@apply flex max-w-6xl mx-auto px-8 w-screen md:p-0;
 
 		.nav-link {
-			@apply hidden items-center px-4 text-zinc-700
+			@apply hidden items-center no-underline px-4 text-zinc-700
 				md:inline-flex
 				hover:text-zinc-900
 				dark:text-zinc-300
@@ -96,7 +96,7 @@
 		}
 
 		.nav-title {
-			@apply font-bold font-condensed py-4 text-zinc-500 text-xl
+			@apply font-bold font-condensed no-underline py-4 text-zinc-500 text-xl
 				md:p-4
 				hover:text-zinc-900
 				hover:dark:text-zinc-100;

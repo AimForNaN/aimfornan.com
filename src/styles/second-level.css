@@ -2,10 +2,6 @@
 
 @layer base {
     .second-level {
-        a {
-            @apply underline;
-        }
-
         h1 {
             @apply font-bold font-condensed text-6xl text-zinc-700 dark:text-zinc-500;
         }
