@@ -9,7 +9,7 @@
 
 @layer base {
 	a {
-		@apply hover:underline;
+		@apply transition-colors;
 	}
 
 	blockquote {
@@ -82,5 +82,24 @@
 @layer components {
 	.btn {
 		@apply bg-zinc-800 font-medium inline-flex px-6 py-3 rounded-full text-zinc-50;
+	}
+
+	.nav {
+		@apply flex max-w-6xl mx-auto px-8 w-screen md:p-0;
+
+		.nav-link {
+			@apply hidden items-center px-4 text-zinc-700
+				md:inline-flex
+				hover:text-zinc-900
+				dark:text-zinc-300
+				hover:dark:text-zinc-100;
+		}
+
+		.nav-title {
+			@apply font-bold font-condensed py-4 text-zinc-500 text-xl
+				md:p-4
+				hover:text-zinc-900
+				hover:dark:text-zinc-100;
+		}
 	}
 }
