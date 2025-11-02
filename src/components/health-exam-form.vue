@@ -106,6 +106,14 @@
 				},
 				{
 					attrs: {
+						name: 'asthma',
+					},
+					label: 'Childhood asthma?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
 						name: 'receding-gums',
 					},
 					label: 'Have receding gums?',
@@ -231,6 +239,9 @@
 							value: 'Auto-brewery syndrome',
 						},
 						{
+							value: 'Bloating',
+						},
+						{
 							value: 'Chronic fatigue syndrome',
 						},
 						{
@@ -243,10 +254,16 @@
 							value: 'Crohn\'s disease',
 						},
 						{
+							value: 'Diarrhea',
+						},
+						{
 							value: 'Diverticulitis',
 						},
 						{
 							value: 'Gastritis',
+						},
+						{
+							value: 'GERD',
 						},
 						{
 							value: 'Irritable bowel disease',
@@ -409,6 +426,45 @@
 			fields: [
 				{
 					attrs: {
+						name: 'clubbing',
+					},
+					label: 'Go clubbing?',
+					options: [
+						{
+							value: 'Never',
+						},
+						{
+							value: 'Whenever they\'re open',
+						},
+						{
+							value: 'Weekly',
+						},
+						{
+							value: 'Monthly',
+						},
+						{
+							value: 'Only just recently',
+						},
+						{
+							value: 'Used to (frequently)',
+						},
+						{
+							value: 'Used to (occasionally)',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Mostly bed-bound'),
+				},
+				{
+					attrs: {
+						name: 'music-frequency',
+					},
+					label: 'Listen to music often?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
 						name: 'alcohol',
 					},
 					label: 'Drink alcoholic beverages frequently?',
@@ -428,6 +484,22 @@
 						name: 'anal-sex',
 					},
 					label: 'Ever received anal sex?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'hydrochloric-acid',
+					},
+					label: 'Use hydrochloric acid?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
+						name: 'digestive-enzymes',
+					},
+					label: 'Use digestive enzymes?',
 					type: YesNoGroup,
 					value: shallowRef(null),
 				},
@@ -613,6 +685,43 @@
 					],
 					type: 'select',
 					value: shallowRef('Type 1'),
+				},
+				{
+					attrs: {
+						name: 'poop-color',
+					},
+					label: 'Color of your poop.',
+					options: [
+						{
+							value: 'Brown',
+						},
+						{
+							value: 'Light brown',
+						},
+						{
+							value: 'Dark brown',
+						},
+						{
+							value: 'Black',
+						},
+						{
+							value: 'White',
+						},
+						{
+							value: 'Yellowish',
+						},
+						{
+							value: 'Greenish',
+						},
+						{
+							value: 'Orangey',
+						},
+						{
+							value: 'Really dark (not black)',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Once a day'),
 				},
 			],
 		},
