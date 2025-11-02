@@ -1,6 +1,10 @@
 # Aim for NaN (website)
 
-All commands are run from the root of the project from a terminal:
+Uses [Astro](https://astro.build) for content management.
+
+### Commands
+
+> All commands are run from the root of the project.
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
