@@ -453,7 +453,7 @@
 						},
 					],
 					type: 'select',
-					value: shallowRef('Mostly bed-bound'),
+					value: shallowRef('Never'),
 				},
 				{
 					attrs: {
@@ -467,8 +467,60 @@
 					attrs: {
 						name: 'alcohol',
 					},
-					label: 'Drink alcoholic beverages frequently?',
-					type: YesNoGroup,
+					label: 'Drink alcoholic beverages?',
+					options: [
+						{
+							value: 'Never',
+						},
+						{
+							value: 'Daily',
+						},
+						{
+							value: 'Weekly',
+						},
+						{
+							value: 'Monthly',
+						},
+						{
+							value: 'Only just recently',
+						},
+						{
+							value: 'Used to (frequently)',
+						},
+						{
+							value: 'Used to (occasionally)',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Never'),
+				},
+				{
+					attrs: {
+						multiple: true,
+						name: 'drinks',
+					},
+					label: 'What do you drink?',
+					options: [
+						{
+							value: 'Water',
+						},
+						{
+							value: 'Beer',
+						},
+						{
+							value: 'Juices',
+						},
+						{
+							value: 'Soda',
+						},
+						{
+							value: 'Wine',
+						},
+						{
+							value: 'Other',
+						},
+					],
+					type: 'select',
 					value: shallowRef(null),
 				},
 				{
@@ -721,7 +773,7 @@
 						},
 					],
 					type: 'select',
-					value: shallowRef('Once a day'),
+					value: shallowRef('Brown'),
 				},
 			],
 		},
