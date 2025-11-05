@@ -1,5 +1,6 @@
 <script setup>
 	import { h, shallowRef, ref } from 'vue';
+	import api from '../lib/api.js';
 
 	function FieldGroup(props, { slots }) {
 		return h('label', { class: 'border border-zinc-300 flex flex-col gap-1 p-4 rounded-md dark:border-zinc-700' },
@@ -17,15 +18,15 @@
 			h('span', slots.default()),
 		]);
 	}
-	function YesNoGroup({ name }) {
+	function YesNoGroup({ name, required = false }) {
 		return h('p', { class: 'flex gap-4' }, [
 			h('label', [
-				h('input', { name, type: 'radio', value: false }),
+				h('input', { name, required, type: 'radio', value: false }),
 				' No',
 			]),
 			h('span', '/'),
 			h('label', [
-				h('input', { name, type: 'radio', value: true }),
+				h('input', { name, required, type: 'radio', value: true }),
 				' Yes',
 			]),
 		]);
@@ -36,6 +37,14 @@
 		}
 
 		return field.value === option.value;
+	}
+	function onSubmit() {
+		fetch(api + '/health/exam', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+		});
 	}
 
 	const exam = [
@@ -221,7 +230,7 @@
 						type: 'number',
 						value: 0,
 					},
-					label: 'How many COVID vaccine shots?',
+					label: 'COVID vaccine shots.',
 					type: 'input',
 					value: shallowRef(0),
 				},
@@ -279,7 +288,7 @@
 						},
 					],
 					type: 'select',
-					value: ref(['None']),
+					value: ref([]),
 				},
 				{
 					attrs: {
@@ -305,7 +314,7 @@
 						},
 					],
 					type: 'select',
-					value: ref(['None']),
+					value: ref([]),
 				},
 				{
 					attrs: {
@@ -337,7 +346,7 @@
 						},
 					],
 					type: 'select',
-					value: ref(['None']),
+					value: ref([]),
 				},
 				{
 					attrs: {
@@ -372,7 +381,7 @@
 						},
 					],
 					type: 'select',
-					value: ref(['None']),
+					value: ref([]),
 				},
 				{
 					attrs: {
@@ -404,7 +413,7 @@
 						},
 					],
 					type: 'select',
-					value: ref(['None']),
+					value: ref([]),
 				},
 				{
 					attrs: {
@@ -680,6 +689,14 @@
 				},
 				{
 					attrs: {
+						name: 'poop-residue',
+					},
+					label: 'Any residue on poop?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
 						name: 'poop-frequency',
 					},
 					label: 'How frequent do you poop?',
@@ -711,7 +728,7 @@
 						class: 'stool-types',
 						name: 'poop-type',
 					},
-					label: 'How does your poop look like?',
+					label: 'Poop shape.',
 					options: [
 						{
 							value: 'Type 1',
@@ -781,7 +798,7 @@
 </script>
 
 <template>
-	<form>
+	<form @submit.prevent="onSubmit">
 		<template :key="section.label" v-for="section in exam">
 			<h2>{{ section.label }}</h2>
 			<FieldSection>
@@ -794,6 +811,9 @@
 				</FieldGroup>
 			</FieldSection>
 		</template>
+		<footer class="flex gap-4 items-center justify-end mt-8">
+			<button class="btn" type="submit">Send</button>
+		</footer>
 	</form>
 </template>
 
