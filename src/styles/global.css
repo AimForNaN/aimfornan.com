@@ -19,8 +19,8 @@
 	}
 
 	body {
-		@apply text-base text-zinc-800
-			dark:bg-zinc-800 dark:text-zinc-100;
+		@apply text-lg text-zinc-700
+			dark:bg-zinc-800 dark:text-zinc-300;
 	}
 
 	input:not([type="checkbox"]):not([type="radio"]), select, textarea, ::picker(select) {
@@ -43,7 +43,7 @@
 
 	select {
 		&[multiple] {
-			@apply h-56 p-1;
+			@apply h-60 p-1;
 		}
 
 		&:open {
@@ -75,14 +75,16 @@
 	}
 
 	textarea {
-		@apply min-h-44 py-2;
+		@apply min-h-48 py-2;
 	}
 }
 
 @layer components {
 	.btn {
-		@apply bg-zinc-800 cursor-pointer font-medium inline-flex px-6 py-3 rounded-full text-zinc-50
-			dark:bg-zinc-100 dark:text-zinc-700;
+		@apply bg-zinc-700 cursor-pointer font-medium inline-flex px-6 py-3 rounded-full text-zinc-50 transition-colors
+			hover:bg-zinc-800 hover:shadow-lg
+			dark:bg-zinc-100 dark:text-zinc-800
+			dark:hover:bg-zinc-500 dark:hover:text-zinc-100;
 	}
 
 	.nav {
