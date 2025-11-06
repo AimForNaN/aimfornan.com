@@ -39,6 +39,7 @@ export const collections = {
 	nutrition: rootCollection('Nutrition'),
 	'nutrition-fruits': foods_collection,
 	'nutrition-vegetables': foods_collection,
+	'nutrition-vitamins': foods_collection,
 };
 
 export async function getSortedEntriesFromCollections(entry_collections = []) {
