@@ -81,7 +81,7 @@
 
 @layer components {
 	.btn {
-		@apply bg-zinc-700 cursor-pointer font-medium inline-flex px-6 py-3 rounded-full text-zinc-50 transition-colors
+		@apply bg-zinc-700 cursor-pointer font-medium inline-flex px-6 py-2 rounded-full text-zinc-50 transition-colors
 			hover:bg-zinc-800 hover:shadow-lg
 			dark:bg-zinc-100 dark:text-zinc-800
 			dark:hover:bg-zinc-500 dark:hover:text-zinc-100;

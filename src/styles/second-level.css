@@ -18,12 +18,18 @@
             @apply bg-zinc-50 dark:bg-zinc-700;
         }
 
-        .footnotes ol {
-            @apply border-zinc-500 border-t flex flex-col gap-1 list-decimal mt-16 p-4;
-        }
+        .footnotes {
+            ol {
+                @apply border-zinc-500 border-t flex flex-col gap-1 list-decimal mt-16 p-4;
 
-        .footnotes ol li {
-            @apply pl-2;
+                li {
+                    @apply pl-2;
+
+                    p {
+                        @apply overflow-ellipsis truncate;
+                    }
+                }
+            }
         }
 
         .sr-only {
