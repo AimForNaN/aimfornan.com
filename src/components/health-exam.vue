@@ -29,7 +29,11 @@
 			component: markRaw(HealthExamForm),
 			handler(exam) {
 				body.exam = exam;
-				finalize().then(goToNext).catch(console.error);
+				finalize().then((rsp) => {
+					if (rsp.ok) {
+						goToNext();
+					}
+				}).catch(console.error);
 			},
 			label: 'Exam',
 		},
@@ -39,7 +43,6 @@
 	});
 
 	function finalize() {
-		console.log(body);
 		return fetch(api + '/health/exam', {
 			body: JSON.stringify(body),
 			headers: {

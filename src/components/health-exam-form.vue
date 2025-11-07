@@ -1,5 +1,6 @@
 <script setup>
 	import { h, shallowRef, ref, unref } from 'vue';
+	import TextInput from './text-input.vue';
 
 	const emit = defineEmits('submit');
 	const exam = [
@@ -863,10 +864,10 @@
 				<FieldSection>
 					<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
 						<p>{{ field.label }}</p>
-						<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-if="field.options">
+						<select v-bind="field.attrs" v-model="field.value" v-if="field.options">
 							<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
-						</component>
-						<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></component>
+						</select>
+						<TextInput :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></TextInput>
 					</FieldGroup>
 				</FieldSection>
 			</template>
