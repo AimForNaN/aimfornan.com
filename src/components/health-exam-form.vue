@@ -1,6 +1,6 @@
 <script setup>
 	import { h, shallowRef, ref, unref } from 'vue';
-	import TextInput from './text-input.vue';
+	import MixedInput from './mixed-input.vue';
 
 	const emit = defineEmits('submit');
 	const exam = [
@@ -167,6 +167,7 @@
 				{
 					attrs: {
 						name: 'abx',
+						required: true,
 					},
 					label: 'Take antibiotics?',
 					options: [
@@ -418,6 +419,7 @@
 				{
 					attrs: {
 						name: 'clubbing',
+						required: true,
 					},
 					label: 'Go clubbing?',
 					options: [
@@ -458,6 +460,7 @@
 				{
 					attrs: {
 						name: 'alcohol',
+						required: true,
 					},
 					label: 'Drink alcoholic beverages?',
 					options: [
@@ -555,6 +558,7 @@
 				{
 					attrs: {
 						name: 'active-level',
+						required: true,
 					},
 					label: 'How active are you?',
 					options: [
@@ -601,6 +605,7 @@
 				{
 					attrs: {
 						name: 'diet',
+						required: true,
 					},
 					label: 'Are you on any exclusive diet?',
 					options: [
@@ -690,6 +695,7 @@
 				{
 					attrs: {
 						name: 'poop-frequency',
+						required: true,
 					},
 					label: 'How frequent do you poop?',
 					options: [
@@ -719,6 +725,7 @@
 					attrs: {
 						class: 'stool-types',
 						name: 'poop-type',
+						required: true,
 					},
 					label: 'Poop shape.',
 					options: [
@@ -750,6 +757,7 @@
 				{
 					attrs: {
 						name: 'poop-color',
+						required: true,
 					},
 					label: 'Color of your poop.',
 					options: [
@@ -867,7 +875,7 @@
 						<select v-bind="field.attrs" v-model="field.value" v-if="field.options">
 							<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
 						</select>
-						<TextInput :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></TextInput>
+						<MixedInput :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></MixedInput>
 					</FieldGroup>
 				</FieldSection>
 			</template>
