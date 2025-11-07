@@ -1,6 +1,7 @@
 <script setup>
 	import { h, shallowRef, ref, unref } from 'vue';
 	import MixedInput from './mixed-input.vue';
+	import YesNoGroup from './yes-no-group.vue';
 
 	const emit = defineEmits('submit');
 	const exam = [
@@ -517,7 +518,7 @@
 						},
 					],
 					type: 'select',
-					value: shallowRef(null),
+					value: shallowRef([]),
 				},
 				{
 					attrs: {
@@ -671,6 +672,7 @@
 				},
 			],
 		},
+		/** */
 		{
 			label: 'Stool',
 			fields: [
@@ -812,19 +814,6 @@
 			h('span', slots.default()),
 		]);
 	}
-	function YesNoGroup({ name, required = false }) {
-		return h('p', { class: 'flex gap-4' }, [
-			h('label', [
-				h('input', { name, required, type: 'radio', value: false }),
-				' No',
-			]),
-			h('span', '/'),
-			h('label', [
-				h('input', { name, required, type: 'radio', value: true }),
-				' Yes',
-			]),
-		]);
-	}
 	function isChecked({ value: field }, option) {
 		if (Array.isArray(field.value)) {
 			return field.value.includes(option.value);
@@ -841,7 +830,7 @@
 				return fields.every((field) => {
 					const value = unref(field.value);
 
-					if (!value || (Array.isArray(value) && !value.length)) {
+					if (value === null || typeof value === 'undefined' || (Array.isArray(value) && !value.length)) {
 						reject(`${field.attrs.name} is required!`);
 						return false;
 					}
@@ -852,13 +841,11 @@
 			});
 
 			if (success) {
-				console.log('success', results);
 				resolve(results);
 			}
 		});
 
 		p.then((results) => {
-			console.log(results);
 			emit('submit', results);
 		}).catch(console.error);
 	}
@@ -872,10 +859,10 @@
 				<FieldSection>
 					<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
 						<p>{{ field.label }}</p>
-						<select v-bind="field.attrs" v-model="field.value" v-if="field.options">
+						<select v-bind="field.attrs" v-model="field.value.value" v-if="field.options">
 							<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
 						</select>
-						<MixedInput :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></MixedInput>
+						<MixedInput :is="field.type" v-bind="field.attrs" v-model="field.value.value" v-else></MixedInput>
 					</FieldGroup>
 				</FieldSection>
 			</template>
