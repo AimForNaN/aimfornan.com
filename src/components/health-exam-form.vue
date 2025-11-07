@@ -1,52 +1,7 @@
 <script setup>
 	import { h, shallowRef, ref } from 'vue';
-	import api from '../lib/api.js';
 
-	function FieldGroup(props, { slots }) {
-		return h('label', { class: 'border border-zinc-300 flex flex-col gap-1 p-4 rounded-md dark:border-zinc-700' },
-			slots.default(),
-		);
-	}
-	function FieldSection(props, { slots }) {
-		return h('div', { class: 'flex flex-col gap-4 md:gap-8 md:grid md:grid-cols-2 lg:grid-cols-3' },
-			slots.default(),
-		);
-	}
-	function ToggleField({ name }, { slots }) {
-		return h('label', { class: 'flex gap-1' }, [
-			h('input', { name, type: 'checkbox' }),
-			h('span', slots.default()),
-		]);
-	}
-	function YesNoGroup({ name, required = false }) {
-		return h('p', { class: 'flex gap-4' }, [
-			h('label', [
-				h('input', { name, required, type: 'radio', value: false }),
-				' No',
-			]),
-			h('span', '/'),
-			h('label', [
-				h('input', { name, required, type: 'radio', value: true }),
-				' Yes',
-			]),
-		]);
-	}
-	function isChecked({ value: field }, option) {
-		if (Array.isArray(field.value)) {
-			return field.value.includes(option.value);
-		}
-
-		return field.value === option.value;
-	}
-	function onSubmit() {
-		fetch(api + '/health/exam', {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'POST',
-		});
-	}
-
+	const emit = defineEmits('submit');
 	const exam = [
 		{
 			label: 'Physical',
@@ -56,6 +11,7 @@
 						min: 1,
 						name: 'age',
 						placeholder: 'yrs',
+						required: true,
 						type: 'number',
 					},
 					label: 'Age (in years).',
@@ -67,6 +23,7 @@
 						min: 1,
 						name: 'weight',
 						placeholder: 'kgs',
+						required: true,
 						type: 'number',
 					},
 					label: 'Weight (in kilograms).',
@@ -78,6 +35,7 @@
 						min: 1,
 						name: 'height',
 						placeholder: 'cm',
+						required: true,
 						type: 'number',
 					},
 					label: 'Height (in centimeters).',
@@ -87,6 +45,7 @@
 				{
 					attrs: {
 						name: 'sex',
+						required: true,
 					},
 					label: 'Sex.',
 					options: [
@@ -108,6 +67,7 @@
 				{
 					attrs: {
 						name: 'balding',
+						required: true,
 					},
 					label: 'Bald or balding?',
 					type: YesNoGroup,
@@ -116,6 +76,7 @@
 				{
 					attrs: {
 						name: 'asthma',
+						required: true,
 					},
 					label: 'Childhood asthma?',
 					type: YesNoGroup,
@@ -124,6 +85,7 @@
 				{
 					attrs: {
 						name: 'receding-gums',
+						required: true,
 					},
 					label: 'Have receding gums?',
 					type: YesNoGroup,
@@ -132,6 +94,7 @@
 				{
 					attrs: {
 						name: 'depression',
+						required: true,
 					},
 					label: 'Suffer from depression?',
 					type: YesNoGroup,
@@ -140,6 +103,7 @@
 				{
 					attrs: {
 						name: 'falling-asleep',
+						required: true,
 					},
 					label: 'Issues falling asleep?',
 					type: YesNoGroup,
@@ -148,6 +112,7 @@
 				{
 					attrs: {
 						name: 'staying-asleep',
+						required: true,
 					},
 					label: 'Issues staying asleep?',
 					type: YesNoGroup,
@@ -156,6 +121,7 @@
 				{
 					attrs: {
 						name: 'low-libido',
+						required: true,
 					},
 					label: 'Have a low libido?',
 					type: YesNoGroup,
@@ -164,6 +130,7 @@
 				{
 					attrs: {
 						name: 'diabetic',
+						required: true,
 					},
 					label: 'Diabetic?',
 					type: YesNoGroup,
@@ -172,6 +139,7 @@
 				{
 					attrs: {
 						name: 'edema',
+						required: true,
 					},
 					label: 'Edema?',
 					type: YesNoGroup,
@@ -180,6 +148,7 @@
 				{
 					attrs: {
 						name: 'food-allergy',
+						required: true,
 					},
 					label: 'Allergic to any food?',
 					type: YesNoGroup,
@@ -188,6 +157,7 @@
 				{
 					attrs: {
 						name: 'laxative',
+						required: true,
 					},
 					label: 'Take a laxative?',
 					type: YesNoGroup,
@@ -217,7 +187,8 @@
 				},
 				{
 					attrs: {
-						name: 'vaxxed',
+						name: 'vaxed',
+						required: true,
 					},
 					label: 'Ever been vaccinated?',
 					type: YesNoGroup,
@@ -227,6 +198,7 @@
 					attrs: {
 						min: 0,
 						name: 'covid-shots',
+						required: true,
 						type: 'number',
 						value: 0,
 					},
@@ -238,6 +210,7 @@
 					attrs: {
 						multiple: true,
 						name: 'gut-disease',
+						required: true,
 					},
 					label: 'Gut disease history.',
 					options: [
@@ -249,6 +222,9 @@
 						},
 						{
 							value: 'Bloating',
+						},
+						{
+							value: 'Candidiasis',
 						},
 						{
 							value: 'Chronic fatigue syndrome',
@@ -294,6 +270,7 @@
 					attrs: {
 						multiple: true,
 						name: 'infections',
+						required: true,
 					},
 					label: 'Infectious disease history.',
 					options: [
@@ -320,6 +297,7 @@
 					attrs: {
 						multiple: true,
 						name: 'liver-disease',
+						required: true,
 					},
 					label: 'Liver disease history.',
 					options: [
@@ -352,6 +330,7 @@
 					attrs: {
 						multiple: true,
 						name: 'neurological-disease',
+						required: true,
 					},
 					label: 'Neurological disease history.',
 					options: [
@@ -387,6 +366,7 @@
 					attrs: {
 						multiple: true,
 						name: 'skin-disease',
+						required: true,
 					},
 					label: 'Skin disease history.',
 					options: [
@@ -418,6 +398,7 @@
 				{
 					attrs: {
 						name: 'disease-other',
+						required: true,
 					},
 					group: {
 						attrs: {
@@ -467,6 +448,7 @@
 				{
 					attrs: {
 						name: 'music-frequency',
+						required: true,
 					},
 					label: 'Listen to music often?',
 					type: YesNoGroup,
@@ -507,6 +489,7 @@
 					attrs: {
 						multiple: true,
 						name: 'drinks',
+						required: true,
 					},
 					label: 'What do you drink?',
 					options: [
@@ -535,6 +518,7 @@
 				{
 					attrs: {
 						name: 'oral-sex',
+						required: true,
 					},
 					label: 'Ever given oral sex?',
 					type: YesNoGroup,
@@ -543,6 +527,7 @@
 				{
 					attrs: {
 						name: 'anal-sex',
+						required: true,
 					},
 					label: 'Ever received anal sex?',
 					type: YesNoGroup,
@@ -551,6 +536,7 @@
 				{
 					attrs: {
 						name: 'hydrochloric-acid',
+						required: true,
 					},
 					label: 'Use hydrochloric acid?',
 					type: YesNoGroup,
@@ -559,6 +545,7 @@
 				{
 					attrs: {
 						name: 'digestive-enzymes',
+						required: true,
 					},
 					label: 'Use digestive enzymes?',
 					type: YesNoGroup,
@@ -655,6 +642,7 @@
 						min: 0,
 						name: 'water',
 						placeholder: 'oz',
+						required: true,
 						type: 'number',
 					},
 					label: 'Water per day (in ounces).',
@@ -664,6 +652,7 @@
 				{
 					attrs: {
 						name: 'diet-last',
+						required: true,
 					},
 					group: {
 						attrs: {
@@ -682,6 +671,7 @@
 				{
 					attrs: {
 						name: 'smelly-poop',
+						required: true,
 					},
 					label: 'Smelly poop?',
 					type: YesNoGroup,
@@ -690,6 +680,7 @@
 				{
 					attrs: {
 						name: 'poop-residue',
+						required: true,
 					},
 					label: 'Any residue on poop?',
 					type: YesNoGroup,
@@ -795,6 +786,46 @@
 			],
 		},
 	];
+
+	function FieldGroup(props, { slots }) {
+		return h('label', { class: 'border border-zinc-300 flex flex-col gap-1 p-4 rounded-md dark:border-zinc-700' },
+			slots.default(),
+		);
+	}
+	function FieldSection(props, { slots }) {
+		return h('div', { class: 'flex flex-col gap-4 md:gap-8 md:grid md:grid-cols-2 lg:grid-cols-3' },
+			slots.default(),
+		);
+	}
+	function ToggleField({ name }, { slots }) {
+		return h('label', { class: 'flex gap-1' }, [
+			h('input', { name, type: 'checkbox' }),
+			h('span', slots.default()),
+		]);
+	}
+	function YesNoGroup({ name, required = false }) {
+		return h('p', { class: 'flex gap-4' }, [
+			h('label', [
+				h('input', { name, required, type: 'radio', value: false }),
+				' No',
+			]),
+			h('span', '/'),
+			h('label', [
+				h('input', { name, required, type: 'radio', value: true }),
+				' Yes',
+			]),
+		]);
+	}
+	function isChecked({ value: field }, option) {
+		if (Array.isArray(field.value)) {
+			return field.value.includes(option.value);
+		}
+
+		return field.value === option.value;
+	}
+	function onSubmit() {
+		emit('submit');
+	}
 </script>
 
 <template>
