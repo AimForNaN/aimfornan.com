@@ -1,5 +1,5 @@
 <script setup>
-	import { h, shallowRef, ref } from 'vue';
+	import { h, shallowRef, ref, unref } from 'vue';
 
 	const emit = defineEmits('submit');
 	const exam = [
@@ -823,29 +823,58 @@
 
 		return field.value === option.value;
 	}
-	function onSubmit() {
-		emit('submit');
+	function onSubmit(e) {
+		const p = new Promise((resolve, reject) => {
+			const results = {};
+			const success = exam.every((category) => {
+				const { fields } = category;
+
+				return fields.every((field) => {
+					const value = unref(field.value);
+
+					if (!value || (Array.isArray(value) && !value.length)) {
+						reject(`${field.attrs.name} is required!`);
+						return false;
+					}
+
+					results[field.attrs.name] = value;
+					return true;
+				});
+			});
+
+			if (success) {
+				console.log('success', results);
+				resolve(results);
+			}
+		});
+
+		p.then((results) => {
+			console.log(results);
+			emit('submit', results);
+		}).catch(console.error);
 	}
 </script>
 
 <template>
-	<form @submit.prevent="onSubmit">
-		<template :key="section.label" v-for="section in exam">
-			<h2>{{ section.label }}</h2>
-			<FieldSection>
-				<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
-					<p>{{ field.label }}</p>
-					<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-if="field.options">
-						<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
-					</component>
-					<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></component>
-				</FieldGroup>
-			</FieldSection>
-		</template>
-		<footer class="flex gap-4 items-center justify-end mt-8">
-			<button class="btn" type="submit">Send</button>
-		</footer>
-	</form>
+	<div>
+		<form @submit.stop.prevent="onSubmit">
+			<template :key="section.label" v-for="section in exam">
+				<h2>{{ section.label }}</h2>
+				<FieldSection>
+					<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
+						<p>{{ field.label }}</p>
+						<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-if="field.options">
+							<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
+						</component>
+						<component :is="field.type" v-bind="field.attrs" v-model="field.value" v-else></component>
+					</FieldGroup>
+				</FieldSection>
+			</template>
+			<footer class="flex gap-4 items-center justify-end mt-8">
+				<button class="btn" type="submit">Send</button>
+			</footer>
+		</form>
+	</div>
 </template>
 
 <style>

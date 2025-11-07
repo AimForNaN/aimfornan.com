@@ -5,6 +5,7 @@
 	import HealthExamAgreement from './health-exam-agreement.vue';
 	import HealthExamContact from './health-exam-contact.vue';
 	import HealthExamForm from './health-exam-form.vue';
+	import { markRaw } from 'vue';
 
 	const body = {
 		email: null,
@@ -12,30 +13,33 @@
 	};
 	const { current, goToNext, isAfter, isCurrent, steps } = useStepper({
 		'agreement': {
-			component: HealthExamAgreement,
+			component: markRaw(HealthExamAgreement),
 			handler: () => goToNext(),
 			label: 'Agreement',
 		},
 		'email': {
-			component: HealthExamContact,
-			handler() {
+			component: markRaw(HealthExamContact),
+			handler(email) {
+				body.email = email;
 				goToNext();
 			},
 			label: 'Contact',
 		},
 		'exam': {
-			component: HealthExamForm,
-			handler() {
+			component: markRaw(HealthExamForm),
+			handler(exam) {
+				body.exam = exam;
 				finalize().then(goToNext).catch(console.error);
 			},
 			label: 'Exam',
 		},
 		'final': {
-			label: 'Final',
+			label: 'Done',
 		},
 	});
 
 	function finalize() {
+		console.log(body);
 		return fetch(api + '/health/exam', {
 			body: JSON.stringify(body),
 			headers: {
@@ -47,10 +51,10 @@
 </script>
 
 <template>
-	<header class="flex gap-2 mb-8 -mt-6">
+	<header class="breadcrumbs flex gap-2 mb-8 -mt-6">
 		<template v-for="(step, id, index) in steps">
 			<span v-show="index !== 0">&raquo;</span>
-			<span :aria-selected="isAfter(id) || isCurrent(id)" class="opacity-50 aria-selected:opacity-100">{{step.label}}</span>
+			<span :aria-selected="isAfter(id) || isCurrent(id)" class="breadcrumb">{{step.label}}</span>
 		</template>
 	</header>
 	<component :is="current.component" @submit="current.handler"></component>
