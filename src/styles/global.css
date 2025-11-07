@@ -80,6 +80,12 @@
 }
 
 @layer components {
+	.breadcrumbs {
+		.breadcrumb:not([aria-selected="true"]) {
+			@apply text-zinc-500;
+		}
+	}
+
 	.btn {
 		@apply bg-zinc-700 cursor-pointer font-medium inline-flex px-6 py-2 rounded-full text-zinc-50 transition-colors
 			hover:bg-zinc-800 hover:shadow-lg
