@@ -80,6 +80,10 @@
 }
 
 @layer components {
+	.box {
+		@apply border border-b-zinc-300 flex flex-col gap-8 mx-auto px-8 py-6 rounded-md dark:border-zinc-700;
+	}
+
 	.breadcrumbs {
 		.breadcrumb:not([aria-selected="true"]) {
 			@apply text-zinc-500;
