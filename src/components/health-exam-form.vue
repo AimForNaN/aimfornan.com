@@ -167,6 +167,29 @@
 				},
 				{
 					attrs: {
+						name: 'painkillers',
+						required: true,
+					},
+					label: 'Take painkillers?',
+					options: [
+						{
+							value: 'Never',
+						},
+						{
+							value: 'Whenever I feel pain',
+						},
+						{
+							value: 'I\'m on a prescription',
+						},
+						{
+							value: 'Sometimes',
+						},
+					],
+					type: 'select',
+					value: shallowRef('Never'),
+				},
+				{
+					attrs: {
 						name: 'abx',
 						required: true,
 					},
@@ -417,6 +440,15 @@
 		{
 			label: 'Lifestyle and diet',
 			fields: [
+				{
+					attrs: {
+						name: 'nocturnal',
+						required: true,
+					},
+					label: 'Work during the night?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
 				{
 					attrs: {
 						name: 'clubbing',
