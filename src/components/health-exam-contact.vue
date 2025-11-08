@@ -15,7 +15,7 @@
 
 <template>
 	<div>
-		<form class="border border-b-zinc-300 flex flex-col gap-8 mx-auto px-8 py-6 rounded-md md:w-96 dark:border-zinc-700" @submit.stop.prevent="onSubmit">
+		<form class="box" @submit.stop.prevent="onSubmit">
 			<label class="flex flex-col gap-4">
 				<p>
 					We'll need a way to contact you.

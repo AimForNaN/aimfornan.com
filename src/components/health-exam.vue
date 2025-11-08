@@ -4,6 +4,7 @@
 
 	import HealthExamAgreement from './health-exam-agreement.vue';
 	import HealthExamContact from './health-exam-contact.vue';
+	import HealthExamDone from './health-exam-done.vue';
 	import HealthExamForm from './health-exam-form.vue';
 	import { markRaw } from 'vue';
 
@@ -38,6 +39,8 @@
 			label: 'Exam',
 		},
 		'final': {
+			component: markRaw(HealthExamDone),
+			handler() {},
 			label: 'Done',
 		},
 	});
@@ -54,7 +57,7 @@
 </script>
 
 <template>
-	<header class="breadcrumbs flex gap-2 mb-8 -mt-6">
+	<header class="breadcrumbs flex gap-2 mb-8 -mt-4">
 		<template v-for="(step, id, index) in steps">
 			<span v-show="index !== 0">&raquo;</span>
 			<span :aria-selected="isAfter(id) || isCurrent(id)" class="breadcrumb">{{step.label}}</span>
