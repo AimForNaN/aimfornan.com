@@ -38,6 +38,7 @@ export const collections = {
 	'health-compendium': compendium_collection,
 	nutrition: rootCollection('Nutrition'),
 	'nutrition-fruits': foods_collection,
+	'nutrition-minerals': foods_collection,
 	'nutrition-vegetables': foods_collection,
 	'nutrition-vitamins': foods_collection,
 };
