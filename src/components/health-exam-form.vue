@@ -68,6 +68,15 @@
 			fields: [
 				{
 					attrs: {
+						name: 'braces',
+						required: true,
+					},
+					label: 'Braces?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
 						name: 'balding',
 						required: true,
 					},
@@ -865,6 +874,10 @@
 					if (value === null || typeof value === 'undefined' || (Array.isArray(value) && !value.length)) {
 						reject(`${field.attrs.name} is required!`);
 						return false;
+					}
+
+					if (Array.isArray(value) && value.includes('None') && value.length > 1) {
+						delete value[value.indexOf('None')];
 					}
 
 					results[field.attrs.name] = value;
