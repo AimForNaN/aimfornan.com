@@ -1,0 +1,12 @@
+services:
+  web:
+    container_name: aimfornan_com
+    image: nginx:mainline-alpine
+    networks:
+      - aimfornan_network
+    volumes:
+      - ./dist:/usr/share/nginx/html
+
+networks:
+  aimfornan_network:
+    external: true
