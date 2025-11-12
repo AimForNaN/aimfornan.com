@@ -101,6 +101,8 @@
 		@apply cursor-pointer flex items-center justify-center w-14;
 
 		summary {
+			@apply  outline-none;
+
 			nav {
 				@apply bg-zinc-100 border-t border-zinc-300 fixed flex-col hidden bottom-0 left-0 shadow-lg top-14 w-80 z-50
 					dark:bg-zinc-900 dark:border-zinc-600;
@@ -108,7 +110,7 @@
 		}
 
 		summary::marker {
-			@apply content-["≡"] -mt-2 outline-none text-4xl;
+			@apply content-["≡"] -mt-2 text-4xl;
 		}
 
 		&[open] {
