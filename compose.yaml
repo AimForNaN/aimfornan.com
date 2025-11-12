@@ -6,7 +6,8 @@ services:
       - aimfornan_network
     volumes:
       - ./dist:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   aimfornan_network:
-    external: true
+    name: aimfornan_network
