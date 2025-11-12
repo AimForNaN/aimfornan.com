@@ -1,0 +1,12 @@
+---
+const {
+	class: className,
+	height = 24,
+	icon,
+	width = 24,
+} = Astro.props;
+---
+
+<svg class={className} height={height} width={width} viewBox="0 0 24 24">
+	<path d={icon}></path>
+</svg>

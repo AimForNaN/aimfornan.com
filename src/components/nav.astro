@@ -1,5 +1,7 @@
 ---
+import { mdiClose, mdiMenu } from '@mdi/js';
 import { collections } from '../content/config';
+import Icon from './icon.astro';
 
 const {props} = Astro;
 const entries = Object.entries(collections).filter(([, x]) => x.root).map(([collection, item]) => ({
@@ -13,6 +15,8 @@ const site_title = import.meta.env.PUBLIC_SITE_TITLE;
 	<nav class="nav">
 		<details class="hamburger-menu">
 			<summary>
+				<Icon class="icon hamburger" icon={mdiMenu}></Icon>
+				<Icon class="icon close" icon={mdiClose}></Icon>
 				<nav>
 					{entries.map((item) => (
 						<a class="nav-link" href={item.href}>{item.name}</a>

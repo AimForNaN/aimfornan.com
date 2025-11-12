@@ -110,7 +110,15 @@
 		}
 
 		summary::marker {
-			@apply content-["≡"] -mt-2 text-4xl;
+			@apply content-none;
+		}
+
+		.icon {
+			@apply fill-zinc-700 dark:fill-zinc-300;
+
+			&.close {
+				@apply hidden;
+			}
 		}
 
 		&[open] {
@@ -123,10 +131,16 @@
 				nav {
 					@apply flex;
 				}
-			}
 
-			summary::marker {
-				@apply content-["✗"];
+				.icon {
+					&.close {
+						@apply inline;
+					}
+
+					&.hamburger {
+						@apply hidden;
+					}
+				}
 			}
 		}
 	}
