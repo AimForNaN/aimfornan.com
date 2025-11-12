@@ -97,20 +97,51 @@
 			dark:hover:bg-zinc-500 dark:hover:text-zinc-100;
 	}
 
+	.hamburger-menu {
+		@apply cursor-pointer flex items-center justify-center w-14;
+
+		summary {
+			nav {
+				@apply bg-zinc-100 border-t border-zinc-300 fixed flex-col hidden bottom-0 left-0 shadow-lg top-14 w-80 z-50
+					dark:bg-zinc-900 dark:border-zinc-600;
+			}
+		}
+
+		summary::marker {
+			@apply content-["≡"] -mt-2 outline-none text-4xl;
+		}
+
+		&[open] {
+			summary {
+				&:before {
+					@apply backdrop-blur-sm border-t border-zinc-300 content-[""] fixed inset-0 top-14
+						dark:border-zinc-600;
+				}
+
+				nav {
+					@apply flex;
+				}
+			}
+
+			summary::marker {
+				@apply content-["✗"];
+			}
+		}
+	}
+
 	.nav {
-		@apply flex max-w-6xl mx-auto px-8 w-screen md:p-0;
+		@apply flex gap-2 h-14 px-2 w-screen
+			md:max-w-6xl md:mx-auto md:p-0;
 
 		.nav-link {
-			@apply hidden items-center no-underline px-4 text-zinc-700
-				md:inline-flex
-				hover:text-zinc-900
+			@apply inline-flex items-center no-underline h-14 px-8 text-zinc-700
+				hover:bg-zinc-200 hover:text-zinc-900
 				dark:text-zinc-300
-				hover:dark:text-zinc-100;
+				hover:dark:bg-zinc-700 hover:dark:text-zinc-100;
 		}
 
 		.nav-title {
-			@apply font-bold font-condensed no-underline py-4 text-zinc-500 text-xl
-				md:p-4
+			@apply font-bold font-condensed h-14 no-underline py-4 text-zinc-500 text-xl
 				hover:text-zinc-900
 				hover:dark:text-zinc-100;
 		}

@@ -6,13 +6,20 @@ const entries = Object.entries(collections).filter(([, x]) => x.root).map(([coll
 	name: item.name,
 	href: `/${collection}`,
 }));
+const site_title = import.meta.env.PUBLIC_SITE_TITLE;
 ---
 
-<header class="bg-zinc-50 border-b sticky top-0 dark:bg-zinc-900 dark:border-zinc-600">
+<header class="bg-zinc-50 border-b flex sticky top-0 dark:bg-zinc-900 dark:border-zinc-600">
 	<nav class="nav">
-		<a class="nav-title" href="/">Aim for NaN</a>
-		{entries.map((item) => (
-			<a class="nav-link" href={item.href}>{item.name}</a>
-		))}
+		<details class="hamburger-menu">
+			<summary>
+				<nav>
+					{entries.map((item) => (
+						<a class="nav-link" href={item.href}>{item.name}</a>
+					))}
+				</nav>
+			</summary>
+		</details>
+		<a class="nav-title" href="/">{site_title}</a>
 	</nav>
 </header>

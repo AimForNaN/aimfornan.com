@@ -7,7 +7,7 @@ import Head from '../components/head.astro';
 import Header from '../components/header.astro';
 import Nav from '../components/nav.astro';
 
-import '../styles/global.css';
+import '../styles/catalog.css';
 
 const { params, props } = Astro;
 const { category } = params;
@@ -24,15 +24,15 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 		<Nav />
 		<main class="flex-1">
 			<Header heading={frontmatter.title} />
-			<article class="border-zinc-500 border-t-2 divide-zinc-300 divide-y flex flex-col max-w-6xl mx-auto dark:border-zinc-600 dark:divide-zinc-700">
+			<article class="catalog">
 				{Object.entries(c).map(([entry_category, entries]) => (
-					<section class="flex flex-col gap-2 p-8 md:gap-0 md:grid md:grid-cols-2 md:py-8 lg:grid-cols-3 xl:px-0">
-						<header class="font-bold text-lg tracking-widest uppercase">
+					<section class="catalog-section">
+						<header class="catalog-section-header">
 							{entry_category}
 						</header>
-						<nav class="gap-2 grid md:gap-8 md:grid-cols-2 lg:grid-cols-3 lg:col-span-2">
+						<nav class="catalog-list">
 							{entries.map(entry => (
-								<a class="flex" href={`/${entry.slug}`}>{entry.data.title}</a>
+								<a href={`/${entry.slug}`}>{entry.data.title}</a>
 							))}
 						</nav>
 					</section>

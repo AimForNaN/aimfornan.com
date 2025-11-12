@@ -3,6 +3,7 @@ const {
 	description = "",
 	title = "",
 } = Astro.props;
+const site_title = import.meta.env.PUBLIC_SITE_TITLE;
 ---
 
 <head>
@@ -10,6 +11,6 @@ const {
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-	<title>{title} | Aim for NaN</title>
+	<title>{title} | {site_title}</title>
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
