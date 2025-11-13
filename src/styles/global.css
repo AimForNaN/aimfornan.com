@@ -104,8 +104,8 @@
 			@apply  outline-none;
 
 			nav {
-				@apply bg-zinc-100 border-t border-zinc-300 fixed flex-col hidden bottom-0 left-0 shadow-lg top-14 w-80 z-50
-					dark:bg-zinc-900 dark:border-zinc-600;
+				@apply bg-zinc-50 border-r border-t border-zinc-300 fixed flex-col hidden bottom-0 left-0 shadow-xl top-14 w-80
+					dark:bg-zinc-900 dark:border-zinc-700;
 			}
 		}
 
@@ -124,8 +124,8 @@
 		&[open] {
 			summary {
 				&:before {
-					@apply backdrop-blur-sm border-t border-zinc-300 content-[""] fixed inset-0 top-14
-						dark:border-zinc-600;
+					@apply backdrop-blur-xs bg-white/50 border-t border-zinc-300 content-[""] fixed inset-0 top-14
+						dark:bg-zinc-800/50 dark:border-zinc-700;
 				}
 
 				nav {
@@ -157,7 +157,7 @@
 		}
 
 		.nav-title {
-			@apply font-bold font-condensed h-14 no-underline py-4 text-zinc-500 text-xl
+			@apply font-bold font-condensed h-14 inline-flex items-center no-underline text-zinc-500 text-xl
 				hover:text-zinc-900
 				hover:dark:text-zinc-100;
 		}
