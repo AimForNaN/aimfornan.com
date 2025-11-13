@@ -8,6 +8,7 @@ const compendium_collection = defineCollection({
 		category: z.string(),
 		index: z.coerce.number().nonnegative().int().optional(),
 		title: z.string(),
+		published: z.boolean(),
 	}),
 });
 
@@ -17,6 +18,7 @@ const foods_collection = defineCollection({
 	schema: z.object({
 		category: z.string(),
 		title: z.string(),
+		published: z.boolean(),
 	}),
 });
 
@@ -32,6 +34,7 @@ export const collections = {
 			species: z.string(),
 			subspecies: z.string().optional(),
 			title: z.string(),
+			published: z.boolean(),
 		}),
 	}),
 	health: rootCollection('Health'),
@@ -49,7 +52,7 @@ export async function getSortedEntriesFromCollections(entry_collections = []) {
 		collection = await getCollection(collection);
 		return collection.toSorted((a, b) => {
 			return (a.data[c.sort_by] ?? 2) - (b.data[c.sort_by] ?? 2);
-		});
+		}).filter(x => x.data.published);
 	}, entry_collections);
 }
 
