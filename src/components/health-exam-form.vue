@@ -563,6 +563,15 @@
 				},
 				{
 					attrs: {
+						name: 'non-stick-cooking',
+						required: true,
+					},
+					label: 'Cook with non-stick?',
+					type: YesNoGroup,
+					value: shallowRef(null),
+				},
+				{
+					attrs: {
 						name: 'oral-sex',
 						required: true,
 					},
