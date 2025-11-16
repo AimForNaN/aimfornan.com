@@ -41,6 +41,10 @@
 	}
 }
 
+@utility card-actions {
+	@apply mt-2;
+}
+
 @utility card-border {
 	@apply border-base-300;
 }

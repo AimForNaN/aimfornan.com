@@ -5,7 +5,6 @@ import { groupEntriesBy } from '../content/config';
 import Footer from '../components/footer.astro';
 import Head from '../components/head.astro';
 import Header from '../components/header.astro';
-import Nav from '../components/nav.astro';
 
 import '../styles/catalog.css';
 
@@ -21,7 +20,6 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 <html lang="en">
 	<Head title={frontmatter.title} />
 	<body class="divide-base-300 divide-y flex flex-col min-h-screen">
-		<Nav />
 		<main class="flex-1">
 			<Header heading={frontmatter.title} />
 			<article class="catalog">
