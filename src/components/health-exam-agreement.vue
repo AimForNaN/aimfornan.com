@@ -7,8 +7,8 @@
 </script>
 
 <template>
-	<div>
-		<form class="box" @submit.stop.prevent="onSubmit">
+	<div class="card card-border">
+		<form class="card-body" @submit.stop.prevent="onSubmit">
 			<p>
 				This health exam will allow us to get a general idea of your current state of health by the details you provide us.
 				It will be used to assess whether you qualify to be a stool donor,
@@ -25,8 +25,8 @@
 				There is no time limit, but sessions will not be saved until you finish the exam.
 				So, closing or refreshing the page will force you to start over.
 			</p>
-			<footer class="flex gap-4 items-center justify-end">
-				<button class="btn" type="submit">I understand</button>
+			<footer class="card-actions justify-end">
+				<button class="btn btn-primary" type="submit">I understand</button>
 			</footer>
 		</form>
 	</div>

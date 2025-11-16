@@ -9,8 +9,8 @@ const {props} = Astro;
 		{props.heading && <SectionHeader heading={props.heading} subheading={props.subheading} />}
 		<slot />
 	</section>
-	{props.href && <a class="bg-zinc-100 flex gap-4 items-center p-8 relative rounded-lg md:gap-8 md:p-16 lg:px-24 lg:py-16 dark:bg-zinc-700" href={props.href}>
-		<div class="decoration-zinc-100 flex flex-col gap-2 mr-12 md:mr-16 lg:mr-24">
+	{props.href && <a class="bg-base-200 flex gap-4 items-center p-8 relative rounded-lg md:gap-8 md:p-16 lg:px-24 lg:py-16" href={props.href}>
+		<div class="decoration-base-100 flex flex-col gap-2 mr-12 md:mr-16 lg:mr-24">
 			<slot name="see-more" />
 		</div>
 		<div class="absolute right-12 scale-150 text-2xl md:right-16 lg:right-24">

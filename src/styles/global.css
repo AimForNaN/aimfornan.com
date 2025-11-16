@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import '@fontsource-variable/roboto';
 @import '@fontsource-variable/roboto-condensed';
+@plugin "daisyui" {
+	themes: bumblebee --default, dark --prefersdark;
+};
 
 @theme {
 	--default-font-family: "Roboto";
@@ -13,28 +16,12 @@
 	}
 
 	blockquote {
-		@apply bg-zinc-50 px-4 py-2 rounded-lg text-lg
-			md:px-8 md:py-4 md:text-center
-			dark:bg-zinc-700;
+		@apply bg-base-200 px-4 py-2 rounded-lg text-lg
+			md:px-8 md:py-4 md:text-center;
 	}
 
 	body {
-		@apply text-lg text-zinc-700
-			dark:bg-zinc-800 dark:text-zinc-300;
-	}
-
-	input:not([type="checkbox"]):not([type="radio"]), select, textarea, ::picker(select) {
-		@apply appearance-none bg-zinc-50 border border-zinc-300 duration-200 min-h-8 outline-none px-3 py-1 ring-zinc-500 rounded-md shadow-sm shadow-zinc-200 transition w-full
-			focus:ring-2
-			dark:bg-zinc-700 dark:border-zinc-600 dark:shadow-zinc-900;
-	}
-
-	input[type="checkbox"], input[type="radio"] {
-		@apply mr-1;
-	}
-
-	input[type="checkbox"], input[type="radio"], select {
-		@apply cursor-pointer;
+		@apply text-lg;
 	}
 
 	label:has(input,select,textarea) {
@@ -43,123 +30,29 @@
 
 	select {
 		&[multiple] {
-			@apply h-60 p-1;
+			@apply h-48!;
 		}
-
-		&:open {
-			@apply opacity-50 ring-2;
-		}
-
-		option {
-			@apply appearance-none cursor-pointer m-1 outline-none px-3 py-2 rounded-md whitespace-break-spaces
-				hover:bg-zinc-200
-				dark:hover:bg-zinc-600 dark:text-zinc-300;
-
-			&:checked {
-				@apply bg-zinc-700 font-bold text-zinc-50
-				dark:bg-zinc-500;
-			}
-
-			&::checkmark {
-				@apply hidden;
-			}
-		}
-	}
-
-	select, ::picker(select) {
-		appearance: base-select;
-	}
-
-	::picker(select) {
-		@apply my-2 p-1 ring ring-zinc-500 shadow-xl w-auto;
-	}
-
-	textarea {
-		@apply min-h-48 py-2;
 	}
 }
 
 @layer components {
 	.box {
-		@apply border border-b-zinc-300 flex flex-col gap-8 mx-auto px-8 py-6 rounded-md dark:border-zinc-700;
+		@apply border border-b-base-300 flex flex-col gap-8 mx-auto px-8 py-6 rounded-md;
 	}
+}
 
-	.breadcrumbs {
-		.breadcrumb:not([aria-selected="true"]) {
-			@apply text-zinc-500;
-		}
-	}
+@utility card-border {
+	@apply border-base-300;
+}
 
-	.btn {
-		@apply bg-zinc-700 cursor-pointer font-medium inline-flex px-6 py-2 rounded-full text-zinc-50 transition-colors
-			hover:bg-zinc-800 hover:shadow-lg
-			dark:bg-zinc-100 dark:text-zinc-800
-			dark:hover:bg-zinc-500 dark:hover:text-zinc-100;
-	}
+@utility input {
+	@apply w-auto;
+}
 
-	.hamburger-menu {
-		@apply cursor-pointer flex items-center justify-center w-14;
+@utility select {
+	@apply w-auto;
+}
 
-		summary {
-			@apply  outline-none;
-
-			nav {
-				@apply bg-zinc-50 border-r border-t border-zinc-300 fixed flex-col hidden bottom-0 left-0 shadow-xl top-14 w-80
-					dark:bg-zinc-900 dark:border-zinc-700;
-			}
-		}
-
-		summary::marker {
-			@apply content-none;
-		}
-
-		.icon {
-			@apply fill-zinc-700 dark:fill-zinc-300;
-
-			&.close {
-				@apply hidden;
-			}
-		}
-
-		&[open] {
-			summary {
-				&:before {
-					@apply backdrop-blur-xs bg-white/50 border-t border-zinc-300 content-[""] fixed inset-0 top-14
-						dark:bg-zinc-800/50 dark:border-zinc-700;
-				}
-
-				nav {
-					@apply flex;
-				}
-
-				.icon {
-					&.close {
-						@apply inline;
-					}
-
-					&.hamburger {
-						@apply hidden;
-					}
-				}
-			}
-		}
-	}
-
-	.nav {
-		@apply flex gap-2 h-14 px-2 w-screen
-			md:max-w-6xl md:mx-auto md:p-0;
-
-		.nav-link {
-			@apply inline-flex items-center no-underline h-14 px-8 text-zinc-700
-				hover:bg-zinc-200 hover:text-zinc-900
-				dark:text-zinc-300
-				hover:dark:bg-zinc-700 hover:dark:text-zinc-100;
-		}
-
-		.nav-title {
-			@apply font-bold font-condensed h-14 inline-flex items-center no-underline text-zinc-500 text-xl
-				hover:text-zinc-900
-				hover:dark:text-zinc-100;
-		}
-	}
+@utility textarea {
+	@apply min-h-40 w-auto;
 }

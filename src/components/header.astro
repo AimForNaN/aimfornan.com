@@ -6,7 +6,7 @@ const {props} = Astro;
 const { class: className } = props;
 ---
 
-<header class="px-8 py-12 text-center lg:p-24" class:list={[className]}>
+<header class="bg-base-100 px-8 py-12 text-center lg:p-24" class:list={[className]}>
 	<hgroup class="flex flex-col gap-2">
 		{props.heading && <PrimaryHeading>{props.heading}</PrimaryHeading>}
 		{props.subheading && <PrimarySubheading>{props.subheading}</PrimarySubheading>}

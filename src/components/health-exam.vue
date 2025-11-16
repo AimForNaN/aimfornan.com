@@ -57,11 +57,10 @@
 </script>
 
 <template>
-	<header class="breadcrumbs flex gap-2 mb-8 -mt-4">
-		<template v-for="(step, id, index) in steps">
-			<span v-show="index !== 0">&raquo;</span>
-			<span :aria-selected="isAfter(id) || isCurrent(id)" class="breadcrumb">{{step.label}}</span>
-		</template>
+	<header class="breadcrumbs">
+		<ul>
+			<li :aria-selected="isAfter(id) || isCurrent(id)" class="text-base-content/50 aria-selected:text-base-content" v-for="(step, id, index) in steps">{{step.label}}</li>
+		</ul>
 	</header>
 	<component :is="current.component" @submit="current.handler"></component>
 </template>

@@ -769,6 +769,9 @@
 						{
 							value: 'Once every other week',
 						},
+						{
+							value: 'Other',
+						},
 					],
 					type: 'select',
 					value: shallowRef('Once a day'),
@@ -849,7 +852,7 @@
 	];
 
 	function FieldGroup(props, { slots }) {
-		return h('label', { class: 'border border-zinc-300 flex flex-col gap-1 p-4 rounded-md dark:border-zinc-700' },
+		return h('label', { class: 'card card-border gap-1 p-4' },
 			slots.default(),
 		);
 	}
@@ -913,7 +916,7 @@
 				<FieldSection>
 					<FieldGroup :key="field.label" v-bind="field.group?.attrs" v-for="field in section.fields">
 						<p>{{ field.label }}</p>
-						<select v-bind="field.attrs" v-model="field.value.value" v-if="field.options">
+						<select class="select" v-bind="field.attrs" v-model="field.value.value" v-if="field.options">
 							<option :selected="isChecked(field, option)" :value="option.value" v-for="option in field.options">{{ option.label ?? option.value }}</option>
 						</select>
 						<MixedInput :is="field.type" v-bind="field.attrs" v-model="field.value.value" v-else></MixedInput>
@@ -921,7 +924,7 @@
 				</FieldSection>
 			</template>
 			<footer class="flex gap-4 items-center justify-end mt-8">
-				<button class="btn" type="submit">Send</button>
+				<button class="btn btn-primary" type="submit">Send</button>
 			</footer>
 		</form>
 	</div>

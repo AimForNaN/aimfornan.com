@@ -2,8 +2,7 @@
 
 @layer components {
     .catalog {
-        @apply border-zinc-500 border-t-2 divide-zinc-300 divide-y flex flex-col max-w-6xl mx-auto
-            dark:border-zinc-600 dark:divide-zinc-700;
+        @apply border-base-content/40 border-t-2 divide-base-300 divide-y flex flex-col max-w-6xl mx-auto;
 
         .catalog-list {
             @apply gap-2 grid
