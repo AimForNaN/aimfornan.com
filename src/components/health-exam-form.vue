@@ -910,7 +910,7 @@
 
 <template>
 	<div>
-		<form @submit.stop.prevent="onSubmit">
+		<form class="flex flex-col gap-8" @submit.stop.prevent="onSubmit">
 			<template :key="section.label" v-for="section in exam">
 				<h2>{{ section.label }}</h2>
 				<FieldSection>
@@ -923,7 +923,7 @@
 					</FieldGroup>
 				</FieldSection>
 			</template>
-			<footer class="flex gap-4 items-center justify-end mt-8">
+			<footer class="flex gap-4 items-center justify-end">
 				<button class="btn btn-primary" type="submit">Send</button>
 			</footer>
 		</form>

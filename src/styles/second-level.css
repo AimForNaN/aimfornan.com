@@ -7,16 +7,16 @@
         }
 
         h2 {
-            @apply font-bold font-condensed mb-4! mt-12! text-4xl;
+            @apply font-bold font-condensed -mb-2 mt-6 text-4xl;
         }
 
         h3 {
-            @apply font-bold font-condensed leading-none my-8! text-xl;
+            @apply font-bold font-condensed leading-none text-xl;
         }
 
         .footnotes {
             ol {
-                @apply border-zinc-500 border-t flex flex-col gap-1 list-decimal mt-16 p-4;
+                @apply border-zinc-500 border-t flex flex-col gap-1 list-decimal mt-8 p-4;
 
                 li {
                     @apply pl-2;
