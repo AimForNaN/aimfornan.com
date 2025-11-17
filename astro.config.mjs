@@ -11,6 +11,10 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
-
-	integrations: [mdx(), vue()],
+	integrations: [
+		mdx(),
+		vue({
+			appEntrypoint: './src/pages/_app',
+		}),
+	],
 });
