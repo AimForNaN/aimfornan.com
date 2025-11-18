@@ -1,1 +1,3 @@
-export default new URL('/api/v1', import.meta.env.PUBLIC_API_ORIGIN);
+import routes from './routes.js';
+
+export default routes('/api/v1');

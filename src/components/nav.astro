@@ -1,7 +1,8 @@
 ---
-import { mdiClose, mdiMenu } from '@mdi/js';
+import { mdiMenu } from '@mdi/js';
 import { collections } from '../content/config';
 import Icon from './icon.astro';
+import UserAccountMenu from './user-account-menu.vue';
 
 const {props} = Astro;
 const entries = Object.entries(collections).filter(([, x]) => x.root).map(([collection, item]) => ({
@@ -32,5 +33,7 @@ const site_title = import.meta.env.PUBLIC_SITE_TITLE;
 			</div>
 		</div>
 		<a class="btn btn-ghost no-underline text-xl" href="/">{site_title}</a>
+		<div class="flex-1"></div>
+		<UserAccountMenu client:load></UserAccountMenu>
 	</nav>
 </header>
