@@ -2,8 +2,9 @@
 @import '@fontsource-variable/roboto';
 @import '@fontsource-variable/roboto-condensed';
 @plugin "daisyui" {
-	themes: bumblebee --default, dark --prefersdark;
+	themes: bumblebee --default;
 };
+@plugin "./catppuccin.js";
 
 @theme {
 	--default-font-family: "Roboto";
