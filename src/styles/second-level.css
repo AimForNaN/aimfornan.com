@@ -14,6 +14,14 @@
             @apply font-bold font-condensed leading-none text-xl;
         }
 
+        ul {
+            @apply list-disc pl-8;
+
+            li {
+                @apply list-item;
+            }
+        }
+
         .footnotes {
             ol {
                 @apply border-zinc-500 border-t flex flex-col gap-1 list-decimal mt-8 p-4;
