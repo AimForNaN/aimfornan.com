@@ -6,7 +6,7 @@ import Footer from '../components/footer.astro';
 import Head from '../components/head.astro';
 import Header from '../components/header.astro';
 
-import '../styles/catalog.css';
+import '../styles/global.css';
 
 const { params, props } = Astro;
 const { category } = params;
@@ -22,20 +22,21 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 	<body class="divide-base-300 divide-y flex flex-col min-h-screen">
 		<main class="flex-1">
 			<Header heading={frontmatter.title} />
-			<article class="catalog">
+			<ul class="list max-w-6xl mx-auto">
+					<li class="list-row p-0 after:border-b-2 after:inset-x-0"></li>
 				{Object.entries(c).map(([entry_category, entries]) => (
-					<section class="catalog-section">
-						<header class="catalog-section-header">
+					<li class="list-row flex flex-col p-8 rounded-none [:not(:last-child)]:after:inset-x-0 md:gap-8 md:grid md:grid-cols-3">
+						<header class="font-bold text-lg tracking-widest uppercase">
 							{entry_category}
 						</header>
-						<nav class="catalog-list">
+						<nav class="flex flex-col gap-2 list-disc pl-6 md:gap-8 md:grid md:grid-cols-2 md:p-0 lg:grid-cols-3 md:col-span-2">
 							{entries.map(entry => (
-								<a href={`/${entry.slug}`}>{entry.data.title}</a>
+								<a class="list-item md:block" href={`/${entry.slug}`}>{entry.data.title}</a>
 							))}
 						</nav>
-					</section>
+					</li>
 				))}
-			</article>
+			</ul>
 		</main>
 		<Footer />
 	</body>
