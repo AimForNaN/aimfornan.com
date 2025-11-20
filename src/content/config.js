@@ -12,7 +12,7 @@ const compendium_collection = defineCollection({
 	}),
 });
 
-const foods_collection = defineCollection({
+const child_collection = defineCollection({
 	sort_by: 'title',
 	type: 'content',
 	schema: z.object({
@@ -39,11 +39,12 @@ export const collections = {
 	}),
 	health: rootCollection('Health'),
 	'health-compendium': compendium_collection,
+	'health-disease': child_collection,
 	nutrition: rootCollection('Nutrition'),
-	'nutrition-fruits': foods_collection,
-	'nutrition-minerals': foods_collection,
-	'nutrition-vegetables': foods_collection,
-	'nutrition-vitamins': foods_collection,
+	'nutrition-fruits': child_collection,
+	'nutrition-minerals': child_collection,
+	'nutrition-vegetables': child_collection,
+	'nutrition-vitamins': child_collection,
 };
 
 export async function getSortedEntriesFromCollections(entry_collections = []) {
