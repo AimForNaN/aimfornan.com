@@ -22,7 +22,7 @@
 	}
 
 	body {
-		@apply text-lg;
+		@apply text-lg md:leading-8;
 	}
 
 	label:has(input,select,textarea) {
