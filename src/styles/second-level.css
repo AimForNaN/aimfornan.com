@@ -3,7 +3,7 @@
 @layer base {
     .second-level {
         h1 {
-            @apply font-bold font-condensed text-8xl;
+            @apply font-bold font-condensed mb-4 text-8xl;
         }
 
         h2 {
