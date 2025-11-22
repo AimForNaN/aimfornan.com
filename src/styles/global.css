@@ -13,7 +13,7 @@
 
 @layer base {
 	a {
-		@apply transition-colors underline;
+		@apply transition-colors underline underline-offset-4 hover:underline-offset-2;
 	}
 
 	blockquote {
