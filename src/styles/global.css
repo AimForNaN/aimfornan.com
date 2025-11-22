@@ -17,7 +17,7 @@
 	}
 
 	blockquote {
-		@apply bg-base-200 px-4 py-2 rounded-lg text-lg
+		@apply bg-base-200 px-4 py-2 rounded-lg
 			md:px-8 md:py-4 md:text-center;
 	}
 
@@ -64,6 +64,10 @@
 
 @utility input {
 	@apply w-auto;
+}
+
+@utility list {
+	@apply text-lg;
 }
 
 @utility radio {
