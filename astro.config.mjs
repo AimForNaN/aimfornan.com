@@ -7,8 +7,8 @@ import vue from '@astrojs/vue';
 
 // https://astro.build/config
 export default defineConfig({
-	vite: {
-		plugins: [tailwindcss()],
+	devToolbar: {
+		enabled: false,
 	},
 	integrations: [
 		mdx(),
@@ -16,4 +16,7 @@ export default defineConfig({
 			appEntrypoint: './src/pages/_app',
 		}),
 	],
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });
