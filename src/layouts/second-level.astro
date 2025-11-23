@@ -27,7 +27,7 @@ const {
 		<Nav />
 		<main class="second-level flex-1">
 			<article class="flex flex-col gap-8 max-w-4xl mx-auto p-8 py-24 lg:py-28">
-				<PrimaryHeading>{title}</PrimaryHeading>
+				<PrimaryHeading set:html={title}></PrimaryHeading>
 				<slot />
 			</article>
 		</main>

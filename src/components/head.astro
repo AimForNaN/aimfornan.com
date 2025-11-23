@@ -4,6 +4,10 @@ const {
 	title = "",
 } = Astro.props;
 const site_title = import.meta.env.PUBLIC_SITE_TITLE;
+
+function strip_entities(str) {
+	return String(str).replace(/&[^;]+;/, '');
+}
 ---
 
 <head>
@@ -11,6 +15,6 @@ const site_title = import.meta.env.PUBLIC_SITE_TITLE;
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="viewport" content="width=device-width" />
 	<meta name="generator" content={Astro.generator} />
-	<title>{title} | {site_title}</title>
+	<title>{strip_entities(title)} | {site_title}</title>
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>

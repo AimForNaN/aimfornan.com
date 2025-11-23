@@ -31,7 +31,7 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 						</header>
 						<nav class="flex flex-col gap-2 list-disc pl-6 md:grid md:grid-cols-3 md:p-0 lg:grid-cols-4">
 							{entries.map(entry => (
-								<a class="list-item md:block" href={`/${entry.slug}`}>{entry.data.title}</a>
+								<a class="list-item hyphens-manual md:block" href={`/${entry.slug}`} set:html={entry.data.title}></a>
 							))}
 						</nav>
 					</li>
