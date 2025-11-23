@@ -22,7 +22,7 @@ const c = await groupEntriesBy(collections, x => x.data.category);
 	<body class="divide-base-300 divide-y flex flex-col min-h-screen">
 		<main class="flex-1">
 			<Header heading={frontmatter.title} />
-			<ul class="list max-w-6xl mx-auto">
+			<ul class="list max-w-4xl mx-auto">
 					<li class="list-row p-0 after:inset-x-0"></li>
 				{Object.entries(c).map(([entry_category, entries]) => (
 					<li class="list-row flex flex-col p-8 rounded-none [:not(:last-child)]:after:inset-x-0 md:gap-4">
