@@ -13,7 +13,7 @@
 
 @layer base {
 	a {
-		@apply transition-colors underline underline-offset-4 hover:decoration-accent;
+		@apply decoration-2 decoration-neutral transition-colors underline underline-offset-4 hover:decoration-accent;
 
 		& * {
 			@apply transition-colors;
