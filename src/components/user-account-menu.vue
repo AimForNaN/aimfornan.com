@@ -26,7 +26,7 @@
 </script>
 
 <template>
-	<button class="btn btn-ghost btn-square" :disabled="user_loading" @click="onClick">
+	<button aria-label="user account menu" class="btn btn-ghost btn-square" :disabled="user_loading" @click="onClick">
 		<Icon class="fill-base-content" :icon="mdiAccountCircle"></Icon>
 	</button>
 	<UserFormDialog v-if="!user"></UserFormDialog>
