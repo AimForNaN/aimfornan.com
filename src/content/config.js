@@ -53,8 +53,9 @@ export async function getSortedEntriesFromCollections(entry_collections = []) {
 		const c = collections[collection];
 		collection = await getCollection(collection);
 		return collection.toSorted(
-			firstBy('sort_by')
-				.thenBy('title'))
+			firstBy('title')
+				.thenBy((a, b) => (a.data[c.sort_by] ?? 2) - (b.data[c.sort_by] ?? 2))
+		)
 		.filter(x => x.data.published);
 	}, entry_collections);
 }
