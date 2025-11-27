@@ -1,4 +1,5 @@
 import { defineCollection, getCollection, getEntry, getEntries, z } from 'astro:content';
+import firstBy from 'thenby';
 import mapAsync from '../lib/map-async';
 
 const compendium_collection = defineCollection({
@@ -51,9 +52,10 @@ export async function getSortedEntriesFromCollections(entry_collections = []) {
 	return mapAsync(async (collection) => {
 		const c = collections[collection];
 		collection = await getCollection(collection);
-		return collection.toSorted((a, b) => {
-			return (a.data[c.sort_by] ?? 2) - (b.data[c.sort_by] ?? 2);
-		}).filter(x => x.data.published);
+		return collection.toSorted(
+			firstBy('sort_by')
+				.thenBy('title'))
+		.filter(x => x.data.published);
 	}, entry_collections);
 }
 
