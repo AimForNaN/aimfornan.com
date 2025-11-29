@@ -7,8 +7,10 @@
 @plugin "./catppuccin.js";
 
 @theme {
+	--card-fs: --text-lg;
 	--default-font-family: "Roboto";
 	--font-condensed: "Roboto Condensed", sans-serif;
+	--fontsize: --text-lg;
 }
 
 @layer base {
@@ -55,7 +57,7 @@
 }
 
 @utility card-body {
-	@apply gap-8 text-lg;
+	@apply gap-8;
 }
 
 @utility card-border {
