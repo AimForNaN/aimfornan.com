@@ -58,7 +58,7 @@
 
 <template>
 	<header class="breadcrumbs -mt-6">
-		<ul>
+		<ul class="pl-0">
 			<li :aria-selected="isAfter(id) || isCurrent(id)" class="text-base-content/50 aria-selected:text-base-content" v-for="(step, id, index) in steps">{{step.label}}</li>
 		</ul>
 	</header>
