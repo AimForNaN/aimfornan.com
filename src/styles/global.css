@@ -73,7 +73,7 @@
 }
 
 @utility input {
-	@apply w-auto;
+	@apply outline-offset-0 outline-primary/40 transition-colors w-auto focus:outline-4;
 }
 
 @utility list {
@@ -85,9 +85,9 @@
 }
 
 @utility select {
-	@apply w-auto;
+	@apply outline-offset-0 outline-primary/40 transition-colors w-auto focus:outline-4;
 }
 
 @utility textarea {
-	@apply min-h-40 w-auto;
+	@apply min-h-40 outline-offset-0 outline-primary/40 transition-colors w-auto focus:outline-4;
 }
