@@ -247,7 +247,7 @@
 						name: 'gut-disease',
 						required: true,
 					},
-					label: 'Gut disease history.',
+					label: 'Gut diseases.',
 					options: [
 						{
 							value: 'None',
@@ -307,7 +307,7 @@
 						name: 'infections',
 						required: true,
 					},
-					label: 'Infectious disease history.',
+					label: 'Infectious diseases.',
 					options: [
 						{
 							value: 'None',
@@ -334,7 +334,7 @@
 						name: 'liver-disease',
 						required: true,
 					},
-					label: 'Liver disease history.',
+					label: 'Liver diseases.',
 					options: [
 						{
 							value: 'None',
@@ -367,7 +367,7 @@
 						name: 'neurological-disease',
 						required: true,
 					},
-					label: 'Neurological disease history.',
+					label: 'Neurological diseases.',
 					options: [
 						{
 							value: 'None',
@@ -403,7 +403,7 @@
 						name: 'skin-disease',
 						required: true,
 					},
-					label: 'Skin disease history.',
+					label: 'Skin diseases.',
 					options: [
 						{
 							value: 'None',
