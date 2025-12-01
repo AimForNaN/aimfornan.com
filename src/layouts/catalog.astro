@@ -8,8 +8,7 @@ import Header from '../components/header.astro';
 
 import '../styles/global.css';
 
-const { params, props } = Astro;
-const { category } = params;
+const { props } = Astro;
 const { frontmatter } = props;
 const { collections = [] } = frontmatter;
 
