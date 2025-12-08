@@ -30,7 +30,7 @@
                     @apply pl-2;
 
                     p {
-                        @apply hyphens-auto;
+                        @apply hyphens-auto wrap-break-word;
                     }
                 }
             }
