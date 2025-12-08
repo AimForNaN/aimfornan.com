@@ -30,7 +30,7 @@
                     @apply pl-2;
 
                     p {
-                        @apply overflow-ellipsis truncate;
+                        @apply hyphens-auto;
                     }
                 }
             }
